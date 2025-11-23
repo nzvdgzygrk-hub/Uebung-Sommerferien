@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Sommerferien-Plan U12</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 1200px;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 0.3rem;
+    }
+
+    .week-block {
+      border: 1px solid #ccc;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      background: #f9f9f9;
+    }
+
+    .week-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .week-text {
+      white-space: pre-wrap;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    button.copy-btn,
+    button.summary-btn,
+    button.control-btn {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #888;
+      cursor: pointer;
+      background: #e8e8e8;
+      font-size: 0.8rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.85rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 4px 6px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #eee;
+    }
+
+    td.player-name {
+      text-align: left;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    input[type="number"] {
+      width: 70px;
+      box-sizing: border-box;
+    }
+
+    input.pace {
+      width: 75px;
+      background: #f0f0f0;
+      box-sizing: border-box;
+    }
+
+    .info {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .small-hint {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .summary-block {
+      border: 2px solid #666;
+      padding: 12px;
+      border-radius: 6px;
+      background: #f5f5f5;
+      margin-top: 30px;
+    }
+
+    .summary-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .control-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .code-hint {
+      font-weight: bold;
+      color: #b00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sommerferien-Trainingsplan U12</h1>
+  <p class="info">
+    In den Tabellen trägst du pro Spieler <strong>Ist-Kilometer</strong>, <strong>Minuten</strong> und
+    <strong>Jonglier-Anzahl</strong> ein – die <strong>Pace (min/km)</strong> wird automatisch im Format
+    <strong>MM:SS</strong> berechnet (z.&nbsp;B. 5:59).
+  </p>
+  <p class="small-hint">
+    Du kannst Komma oder Punkt bei den Zahlen nutzen (z.&nbsp;B. 3,5 oder 3.5).<br>
+    <span class="code-hint">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span>
+  </p>
+
+  <!-- ========= WOCHE 1 ========= -->
+  <div class="week-block">
+    <div class="week-header">
+      <h2>Sommerferien – Woche 1 (Soll: 3 km)</h2>
+      <button class="copy-btn" data-copy-target="w1-text">Wochen-Text kopieren</button>
+    </div>
+    <div class="week-text" id="w1-text">
+✅ Woche 1
+
+🪢 Seilspringen: 3 × 60 Sek.
+➤ 30 Sek. Technik + 30 Sek. Speed (abwechselnde Varianten, kein beidbeinig)
+
+🏃 Joggen: 3 km in 2 × 1,5 km 
+
+💪 Kraftübung: 3 × 15 Kniebeugen
+
+🎯 Balljonglieren: Ziel: 10 Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen (60 Sek.) + Kniebeugen (1 Satz) + Balljonglieren (bestes Ergebnis)
+
+💡 Joggen bitte an einem Tag erledigen. Die anderen Übungen (Seilspringen, Kniebeugen, Balljonglieren)
+auf die restlichen Tage der Woche verteilen – nicht alles an einem Tag.
+
+📊 Wichtig für die Statistik: Beendet die Aktivität nach den vorgegebenen 3 km und startet danach eine neue
+Aktivität, falls ihr mehr laufen wollt.
+
+⏸ Wenn ihr während des Laufs eine Pause macht, bitte auch in der App auf Pause klicken.
+    </div>
+
+    <h3>Tracking Sommerferien Woche 1</h3>
+    <table data-week="1" data-week-label="Sommerferien – Woche 1" data-soll-km="3">
+      <thead>
+        <tr>
+          <th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th>
+          <th>Pace (min/km)</th><th>Sprints</th><th>Seilspringen</th>
+          <th>Kraft</th><th>Jonglieren</th><th>Jonglieren (Anzahl)</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- ========= WOCHE 2 ========= -->
+  <div class="week-block">
+    <div class="week-header">
+      <h2>Sommerferien – Woche 2 (Soll: 3,5 km)</h2>
+      <button class="copy-btn" data-copy-target="w2-text">Wochen-Text kopieren</button>
+    </div>
+    <div class="week-text" id="w2-text">
+Woche 2
+
+🪢 Seilspringen: 3 × 60 Sek.
+➤ 30 Sek. Technik + 30 Sek. Speed (abwechselnde Varianten, kein beidbeinig)
+
+🏃 Joggen: 3,5 km + 3 × 20 m Sprint (Pause: 30 Sek. zwischen den Sprints)
+
+💪 Kraftübung: 3 × 15 Sit-ups
+
+🎯 Balljonglieren: Ziel: 15 Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen (60 Sek.) + Sit-ups (1 Satz) + Balljonglieren (bestes Ergebnis)
+
+💡 Joggen bitte an einem Tag erledigen. Die anderen Übungen (Seilspringen, Sit-ups, Balljonglieren)
+auf die restlichen Tage der Woche verteilen – nicht alles an einem Tag.
+
+⏸ Wenn ihr während des Laufs eine Pause macht, bitte auch in der App auf Pause klicken.
+    </div>
+
+    <h3>Tracking Sommerferien Woche 2</h3>
+    <table data-week="2" data-week-label="Sommerferien – Woche 2" data-soll-km="3,5">
+      <thead>
+        <tr>
+          <th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th>
+          <th>Pace (min/km)</th><th>Sprints</th><th>Seilspringen</th>
+          <th>Kraft</th><th>Jonglieren</th><th>Jonglieren (Anzahl)</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- ========= WOCHE 3 ========= -->
+  <div class="week-block">
+    <div class="week-header">
+      <h2>Sommerferien – Woche 3 (Soll: 4 km)</h2>
+      <button class="copy-btn" data-copy-target="w3-text">Wochen-Text kopieren</button>
+    </div>
+    <div class="week-text" id="w3-text">
+Woche 3
+
+🪢 Seilspringen: 3 × 60 Sek.
+➤ 30 Sek. Technik + 30 Sek. Speed (abwechselnde Varianten, kein beidbeinig)
+
+🏃 Joggen: 4 km + 5 × 20 m Sprint (Pause: 30 Sek. zwischen den Sprints)
+
+💪 Kraftübung: 3 × 15 Liegestütze
+
+🎯 Balljonglieren: Ziel: 20 Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen (60 Sek.) + Liegestütze (1 Satz) + Balljonglieren (bestes Ergebnis)
+
+💡 Joggen bitte an einem Tag erledigen. Die anderen Übungen (Seilspringen, Liegestütze, Balljonglieren)
+auf die restlichen Tage der Woche verteilen – nicht alles an einem Tag.
+
+⏸ Wenn ihr während des Laufs eine Pause macht, bitte auch in der App auf Pause klicken.
+    </div>
+
+    <h3>Tracking Sommerferien Woche 3</h3>
+    <table data-week="3" data-week-label="Sommerferien – Woche 3" data-soll-km="4">
+      <thead>
+        <tr>
+          <th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th>
+          <th>Pace (min/km)</th><th>Sprints</th><th>Seilspringen</th>
+          <th>Kraft</th><th>Jonglieren</th><th>Jonglieren (Anzahl)</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- ========= WOCHE 4 ========= -->
+  <div class="week-block">
+    <div class="week-header">
+      <h2>Sommerferien – Woche 4 (Soll: 4,5 km)</h2>
+      <button class="copy-btn" data-copy-target="w4-text">Wochen-Text kopieren</button>
+    </div>
+    <div class="week-text" id="w4-text">
+Woche 4
+
+🪢 Seilspringen: 3 × 60 Sek.
+➤ 30 Sek. Technik + 30 Sek. Speed (abwechselnde Varianten, kein beidbeinig)
+
+🏃 Joggen: 4,5 km + 3 × 25 m Sprint (Pause: 30 Sek. zwischen den Sprints)
+
+💪 Kraftübung: 3 × 60 Sek. Plank
+
+🎯 Balljonglieren: Ziel: 25 Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen (60 Sek.) + Plank (1 Durchgang) + Balljonglieren (bestes Ergebnis)
+
+💡 Joggen bitte an einem Tag erledigen. Die anderen Übungen (Seilspringen, Plank, Balljonglieren)
+auf die restlichen Tage der Woche verteilen – nicht alles an einem Tag.
+
+⏸ Wenn ihr während des Laufs eine Pause macht, bitte auch in der App auf Pause klicken.
+    </div>
+
+    <h3>Tracking Sommerferien Woche 4</h3>
+    <table data-week="4" data-week-label="Sommerferien – Woche 4" data-soll-km="4,5">
+      <thead>
+        <tr>
+          <th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th>
+          <th>Pace (min/km)</th><th>Sprints</th><th>Seilspringen</th>
+          <th>Kraft</th><th>Jonglieren</th><th>Jonglieren (Anzahl)</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- ========= WOCHE 5 ========= -->
+  <div class="week-block">
+    <div class="week-header">
+      <h2>Sommerferien – Woche 5 (Soll: 4,8 km)</h2>
+      <button class="copy-btn" data-copy-target="w5-text">Wochen-Text kopieren</button>
+    </div>
+    <div class="week-text" id="w5-text">
+Woche 5
+
+🪢 Seilspringen: 3 × 60 Sek.
+➤ 30 Sek. Technik + 30 Sek. Speed (abwechselnde Varianten, kein beidbeinig)
+
+🏃 Joggen: 4,8 km + 4 × 25 m Sprint (Pause: 30 Sek. zwischen den Sprints)
+
+💪 Kraftübung: 3 × 15 Ausfallschritte pro Bein
+
+🎯 Balljonglieren: Ziel: 30 Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen (60 Sek.) + Ausfallschritte (1 Satz) + Balljonglieren (bestes Ergebnis)
+
+💡 Joggen bitte an einem Tag erledigen. Die anderen Übungen (Seilspringen, Ausfallschritte, Balljonglieren)
+auf die restlichen Tage der Woche verteilen – nicht alles an einem Tag.
+
+⏸ Wenn ihr während des Laufs eine Pause macht, bitte auch in der App auf Pause klicken.
+    </div>
+
+    <h3>Tracking Sommerferien Woche 5</h3>
+    <table data-week="5" data-week-label="Sommerferien – Woche 5" data-soll-km="4,8">
+      <thead>
+        <tr>
+          <th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th>
+          <th>Pace (min/km)</th><th>Sprints</th><th>Seilspringen</th>
+          <th>Kraft</th><th>Jonglieren</th><th>Jonglieren (Anzahl)</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- ========= WOCHE 6 ========= -->
+  <div class="week-block">
+    <div class="week-header">
+      <h2>Sommerferien – Woche 6 (Soll: 5 km)</h2>
+      <button class="copy-btn" data-copy-target="w6-text">Wochen-Text kopieren</button>
+    </div>
+    <div class="week-text" id="w6-text">
+Woche 6
+
+🪢 Seilspringen: 3 × 60 Sek.
+➤ 30 Sek. Technik + 30 Sek. Speed (abwechselnde Varianten, kein beidbeinig)
+
+🏃 Joggen: 5 km Challenge – möglichst ohne Pause + 5 × 20 m Sprint (Pause: 30 Sek. zwischen den Sprints)
+
+💪 Kraftübung: 3 × 30 Sek. Bergsteiger (Mountain Climbers)
+
+🎯 Balljonglieren: Ziel: 35 Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen (60 Sek.) + Bergsteiger (1 Satz) + Balljonglieren (bestes Ergebnis)
+
+💡 Joggen bitte an einem Tag erledigen. Die anderen Übungen (Seilspringen, Bergsteiger, Balljonglieren)
+auf die restlichen Tage der Woche verteilen – nicht alles an einem Tag.
+
+⏸ Wenn ihr während des Laufs eine Pause macht, bitte auch in der App auf Pause klicken.
+    </div>
+
+    <h3>Tracking Sommerferien Woche 6</h3>
+    <table data-week="6" data-week-label="Sommerferien – Woche 6" data-soll-km="5">
+      <thead>
+        <tr>
+          <th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th>
+          <th>Pace (min/km)</th><th>Sprints</th><th>Seilspringen</th>
+          <th>Kraft</th><th>Jonglieren</th><th>Jonglieren (Anzahl)</th><th>Video</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- ======== ENDÜBERSICHT ======== -->
+  <div class="summary-block">
+    <h2>Ferien-Endübersicht</h2>
+    <p>
+      Mit den Buttons unten kannst du pro Spieler eine Übersicht über
+      <strong>Woche 1 bis Woche 6</strong> in die Zwischenablage kopieren
+      (fertig zum Einfügen in die Eltern-WhatsApp-Gruppe).
+    </p>
+    <p class="small-hint">
+      Sicherheits-Code für „Neuer Spieler“, „Spieler löschen“ und „Alle Daten zurücksetzen“:
+      <span class="code-hint">123456</span>
+    </p>
+
+    <div class="summary-buttons" id="summary-buttons"></div>
+
+    <div class="control-buttons">
+      <button class="control-btn" id="add-player-btn">Neuen Spieler anlegen (alle Wochen)</button>
+      <button class="control-btn" id="delete-player-btn">Einzelnen Spieler löschen</button>
+      <button class="control-btn" id="reset-btn">Alle Daten zurücksetzen</button>
+    </div>
+  </div>
+
+  <script>
+    const DEFAULT_PLAYERS = [
+      'Ahmet', 'Aos', 'David', 'Efe', 'Elias',
+      'Jannik', 'Jonas', 'Julian', 'Kiril', 'Malik',
+      'Mario', 'Noel', 'Paul B', 'Paul H', 'Piotr', 'Semih'
+    ];
+    const STORAGE_KEY = 'sommerferien_u12_state_v1';
+    const SECURITY_CODE = '123456';
+    let codeValidUntil = 0;
+
+    function copyToClipboard(text, onSuccess) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => onSuccess && onSuccess())
+          .catch(() => alert('Kopieren nicht möglich. Bitte Text manuell markieren und kopieren.'));
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand('copy');
+          onSuccess && onSuccess();
+        } catch (e) {
+          alert('Kopieren nicht möglich. Bitte Text manuell markieren und kopieren.');
+        }
+        document.body.removeChild(temp);
+      }
+    }
+
+    function yn(cb) {
+      return cb && cb.checked ? 'Ja' : 'Nein';
+    }
+
+    function updatePaceForRow(row) {
+      const kmInput = row.querySelector('input[data-role="km"]');
+      const minInput = row.querySelector('input[data-role="min"]');
+      const paceInput = row.querySelector('input[data-role="pace"]');
+      if (!kmInput || !minInput || !paceInput) return;
+
+      const kmVal = (kmInput.value || '').replace(',', '.');
+      const minVal = (minInput.value || '').replace(',', '.');
+      const km = parseFloat(kmVal);
+      const minutes = parseFloat(minVal);
+
+      if (km > 0 && minutes > 0) {
+        const paceMinutes = minutes / km;
+        let wholeMinutes = Math.floor(paceMinutes);
+        let seconds = Math.round((paceMinutes - wholeMinutes) * 60);
+        if (seconds === 60) {
+          wholeMinutes += 1;
+          seconds = 0;
+        }
+        const secStr = seconds.toString().padStart(2, '0');
+        paceInput.value = wholeMinutes + ':' + secStr;
+      } else {
+        paceInput.value = '';
+      }
+    }
+
+    function attachRowListeners(row) {
+      row.querySelectorAll('input').forEach(input => {
+        const role = input.dataset.role;
+        if (role === 'km' || role === 'min') {
+          input.addEventListener('input', () => {
+            updatePaceForRow(row);
+            saveState();
+          });
+        } else {
+          const ev = input.type === 'checkbox' ? 'change' : 'input';
+          input.addEventListener(ev, saveState);
+        }
+      });
+    }
+
+    function ensureCode() {
+      const now = Date.now();
+      if (now < codeValidUntil) return true;
+      const entered = prompt('Bitte Sicherheits-Code eingeben (steht oben auf der Seite):');
+      if (entered === null) return false;
+      if (entered.trim() === SECURITY_CODE) {
+        codeValidUntil = Date.now() + 3 * 60 * 1000;
+        return true;
+      }
+      alert('Falscher Code.');
+      return false;
+    }
+
+    function buildUIFromState(state) {
+      const players = (state.players || []).slice().sort((a, b) => a.localeCompare(b));
+
+      document.querySelectorAll('table[data-week]').forEach(table => {
+        const weekId = table.dataset.week;
+        const sollKm = table.dataset.sollKm || '';
+        const weekData = (state.weeks && state.weeks[weekId]) ? state.weeks[weekId] : {};
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+
+        players.forEach(name => {
+          const pdata = (weekData[name] || {
+            istKm: '',
+            minuten: '',
+            pace: '',
+            sprints: false,
+            seil: false,
+            kraft: false,
+            jonglieren: false,
+            jonglierenAnzahl: '',
+            video: false
+          });
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="player-name"></td>
+            <td>${sollKm}</td>
+            <td><input type="number" step="0.1" data-role="km"></td>
+            <td><input type="number" step="0.1" data-role="min"></td>
+            <td><input type="text" class="pace" data-role="pace" readonly></td>
+            <td><input type="checkbox" data-role="sprints"></td>
+            <td><input type="checkbox" data-role="seil"></td>
+            <td><input type="checkbox" data-role="kraft"></td>
+            <td><input type="checkbox" data-role="jonglieren"></td>
+            <td><input type="number" step="1" data-role="jonglierenAnzahl"></td>
+            <td><input type="checkbox" data-role="video"></td>
+          `;
+          tr.querySelector('.player-name').textContent = name;
+
+          const km = tr.querySelector('input[data-role="km"]');
+          const min = tr.querySelector('input[data-role="min"]');
+          const pace = tr.querySelector('input[data-role="pace"]');
+          const sprints = tr.querySelector('input[data-role="sprints"]');
+          const seil = tr.querySelector('input[data-role="seil"]');
+          const kraft = tr.querySelector('input[data-role="kraft"]');
+          const jong = tr.querySelector('input[data-role="jonglieren"]');
+          const jongAnz = tr.querySelector('input[data-role="jonglierenAnzahl"]');
+          const video = tr.querySelector('input[data-role="video"]');
+
+          km.value = pdata.istKm || '';
+          min.value = pdata.minuten || '';
+          pace.value = pdata.pace || '';
+          sprints.checked = !!pdata.sprints;
+          seil.checked = !!pdata.seil;
+          kraft.checked = !!pdata.kraft;
+          jong.checked = !!pdata.jonglieren;
+          jongAnz.value = pdata.jonglierenAnzahl || '';
+          video.checked = !!pdata.video;
+
+          tbody.appendChild(tr);
+          attachRowListeners(tr);
+        });
+      });
+
+      const btnContainer = document.getElementById('summary-buttons');
+      btnContainer.innerHTML = '';
+      players.forEach(name => {
+        const btn = document.createElement('button');
+        btn.className = 'summary-btn';
+        btn.setAttribute('data-player', name);
+        btn.textContent = name;
+        attachSummaryButton(btn);
+        btnContainer.appendChild(btn);
+      });
+    }
+
+    function getStateFromDOM() {
+      const state = { players: [], weeks: {} };
+
+      document.querySelectorAll('.summary-btn').forEach(b => {
+        const name = b.getAttribute('data-player');
+        if (name) state.players.push(name);
+      });
+
+      document.querySelectorAll('table[data-week]').forEach(table => {
+        const weekId = table.dataset.week;
+        const weekData = {};
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const cell = row.querySelector('.player-name');
+          if (!cell) return;
+          const name = cell.textContent.trim();
+          if (!name) return;
+
+          const km = row.querySelector('input[data-role="km"]');
+          const min = row.querySelector('input[data-role="min"]');
+          const pace = row.querySelector('input[data-role="pace"]');
+          const sprints = row.querySelector('input[data-role="sprints"]');
+          const seil = row.querySelector('input[data-role="seil"]');
+          const kraft = row.querySelector('input[data-role="kraft"]');
+          const jong = row.querySelector('input[data-role="jonglieren"]');
+          const jongAnz = row.querySelector('input[data-role="jonglierenAnzahl"]');
+          const video = row.querySelector('input[data-role="video"]');
+
+          weekData[name] = {
+            istKm: km && km.value ? km.value : '',
+            minuten: min && min.value ? min.value : '',
+            pace: pace && pace.value ? pace.value : '',
+            sprints: !!(sprints && sprints.checked),
+            seil: !!(seil && seil.checked),
+            kraft: !!(kraft && kraft.checked),
+            jonglieren: !!(jong && jong.checked),
+            jonglierenAnzahl: jongAnz && jongAnz.value ? jongAnz.value : '',
+            video: !!(video && video.checked)
+          };
+        });
+        state.weeks[weekId] = weekData;
+      });
+
+      return state;
+    }
+
+    function saveState() {
+      const state = getStateFromDOM();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function getPlayerWeekData(playerName, weekId) {
+      const table = document.querySelector('table[data-week="' + weekId + '"]');
+      if (!table) return null;
+
+      const sollKm = table.dataset.sollKm || '';
+      const rows = table.querySelectorAll('tbody tr');
+      let rowFound = null;
+      rows.forEach(row => {
+        const cell = row.querySelector('.player-name');
+        if (cell && cell.textContent.trim() === playerName) rowFound = row;
+      });
+
+      if (!rowFound) {
+        return {
+          sollKm,
+          istKm: '-',
+          minuten: '-',
+          pace: '-',
+          sprints: 'Nein',
+          seil: 'Nein',
+          kraft: 'Nein',
+          jonglieren: 'Nein',
+          jonglierenAnzahl: '-',
+          video: 'Nein'
+        };
+      }
+
+      const km = rowFound.querySelector('input[data-role="km"]');
+      const min = rowFound.querySelector('input[data-role="min"]');
+      const pace = rowFound.querySelector('input[data-role="pace"]');
+      const sprints = rowFound.querySelector('input[data-role="sprints"]');
+      const seil = rowFound.querySelector('input[data-role="seil"]');
+      const kraft = rowFound.querySelector('input[data-role="kraft"]');
+      const jong = rowFound.querySelector('input[data-role="jonglieren"]');
+      const jongAnz = rowFound.querySelector('input[data-role="jonglierenAnzahl"]');
+      const video = rowFound.querySelector('input[data-role="video"]');
+
+      return {
+        sollKm,
+        istKm: km && km.value ? km.value : '-',
+        minuten: min && min.value ? min.value : '-',
+        pace: pace && pace.value ? pace.value : '-',
+        sprints: yn(sprints),
+        seil: yn(seil),
+        kraft: yn(kraft),
+        jonglieren: yn(jong),
+        jonglierenAnzahl: jongAnz && jongAnz.value ? jongAnz.value : '-',
+        video: yn(video)
+      };
+    }
+
+    function buildPlayerSummaryAllWeeks(playerName) {
+      let text = 'Sommerferien – Trainingsübersicht\n' + playerName + '\n\n';
+
+      const tables = Array.from(document.querySelectorAll('table[data-week]'))
+        .sort((a, b) => Number(a.dataset.week) - Number(b.dataset.week));
+
+      tables.forEach(table => {
+        const weekId = table.dataset.week;
+        const data = getPlayerWeekData(playerName, weekId);
+        text += 'Woche ' + weekId + ' (Soll ' + (data.sollKm || '-') + ' km):\n';
+        text += '🏃 Ist: ' + data.istKm + ' km in ' + data.minuten + ' Min';
+        if (data.pace && data.pace !== '-') {
+          text += ' (Pace: ' + data.pace + ' min/km)';
+        }
+        text += '\n';
+        text += '🏁 Sprints: ' + data.sprints + '\n';
+        text += '🪢 Seilspringen: ' + data.seil + '\n';
+        text += '💪 Kraftübungen: ' + data.kraft + '\n';
+        text += '🎯 Jonglieren: ' + data.jonglieren + ' (Anzahl: ' + data.jonglierenAnzahl + ')\n';
+        text += '🎥 Video gesendet: ' + data.video + '\n\n';
+      });
+
+      return text.trim();
+    }
+
+    function attachSummaryButton(btn) {
+      const playerName = btn.getAttribute('data-player');
+      btn.addEventListener('click', function () {
+        const summary = buildPlayerSummaryAllWeeks(playerName);
+        const that = this;
+        copyToClipboard(summary, function () {
+          const original = that.textContent;
+          that.textContent = playerName + ' ✔';
+          setTimeout(() => { that.textContent = original; }, 1500);
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-copy-target');
+          const textEl = document.getElementById(targetId);
+          if (!textEl) return;
+          const text = textEl.innerText.trim();
+          const that = this;
+          copyToClipboard(text, function () {
+            const original = that.textContent;
+            that.textContent = 'Text kopiert ✔';
+            setTimeout(() => { that.textContent = original; }, 1500);
+          });
+        });
+      });
+
+      const raw = localStorage.getItem(STORAGE_KEY);
+      let state = null;
+      if (raw) {
+        try {
+          state = JSON.parse(raw);
+        } catch (e) {
+          console.error('Fehler beim Lesen des gespeicherten Zustands:', e);
+        }
+      }
+
+      if (!state || !Array.isArray(state.players)) {
+        state = {
+          players: DEFAULT_PLAYERS.slice().sort((a, b) => a.localeCompare(b)),
+          weeks: {}
+        };
+        buildUIFromState(state);
+        saveState();
+      } else {
+        buildUIFromState(state);
+      }
+
+      document.getElementById('add-player-btn').addEventListener('click', function () {
+        if (!ensureCode()) return;
+
+        let name = prompt('Vorname des neuen Spielers (wird genau so angezeigt):');
+        if (!name) return;
+        name = name.trim();
+        if (!name) return;
+
+        const existing = document.querySelector('.summary-btn[data-player="' + name + '"]');
+        if (existing) {
+          alert('Diesen Spieler gibt es bereits.');
+          return;
+        }
+
+        document.querySelectorAll('table[data-week]').forEach(table => {
+          const sollKm = table.dataset.sollKm || '';
+          const tbody = table.querySelector('tbody');
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="player-name"></td>
+            <td>${sollKm}</td>
+            <td><input type="number" step="0.1" data-role="km"></td>
+            <td><input type="number" step="0.1" data-role="min"></td>
+            <td><input type="text" class="pace" data-role="pace" readonly></td>
+            <td><input type="checkbox" data-role="sprints"></td>
+            <td><input type="checkbox" data-role="seil"></td>
+            <td><input type="checkbox" data-role="kraft"></td>
+            <td><input type="checkbox" data-role="jonglieren"></td>
+            <td><input type="number" step="1" data-role="jonglierenAnzahl"></td>
+            <td><input type="checkbox" data-role="video"></td>
+          `;
+          tr.querySelector('.player-name').textContent = name;
+          tbody.appendChild(tr);
+          attachRowListeners(tr);
+        });
+
+        const btnContainer = document.getElementById('summary-buttons');
+        const newBtn = document.createElement('button');
+        newBtn.className = 'summary-btn';
+        newBtn.setAttribute('data-player', name);
+        newBtn.textContent = name;
+        attachSummaryButton(newBtn);
+        btnContainer.appendChild(newBtn);
+
+        saveState();
+      });
+
+      document.getElementById('delete-player-btn').addEventListener('click', function () {
+        if (!ensureCode()) return;
+
+        const buttons = Array.from(document.querySelectorAll('.summary-btn'));
+        if (buttons.length === 0) {
+          alert('Es sind aktuell keine Spieler vorhanden.');
+          return;
+        }
+
+        const namenListe = buttons.map(b => b.getAttribute('data-player'));
+        const auswahlText =
+          'Welchen Spieler möchtest du löschen?\n\nVerfügbare Spieler:\n' +
+          namenListe.join(', ');
+
+        let name = prompt(auswahlText);
+        if (!name) return;
+        name = name.trim();
+
+        const gefunden = namenListe.find(n => n.toLowerCase() === name.toLowerCase());
+        if (!gefunden) {
+          alert('Spieler "' + name + '" wurde nicht gefunden.');
+          return;
+        }
+        const finalName = gefunden;
+
+        if (!confirm(
+          'Möchtest du den Spieler "' + finalName +
+          '" wirklich komplett löschen (Zeilen in allen Wochen + Button)?'
+        )) {
+          return;
+        }
+
+        document.querySelectorAll('table[data-week]').forEach(table => {
+          const rows = Array.from(table.querySelectorAll('tbody tr'));
+          rows.forEach(row => {
+            const cell = row.querySelector('.player-name');
+            if (cell && cell.textContent.trim() === finalName) {
+              row.remove();
+            }
+          });
+        });
+
+        const btn = document.querySelector('.summary-btn[data-player="' + finalName + '"]');
+        if (btn) btn.remove();
+
+        saveState();
+        alert('Spieler "' + finalName + '" wurde gelöscht.');
+      });
+
+      // Reset: nur Daten löschen, Spieler behalten
+      document.getElementById('reset-btn').addEventListener('click', function () {
+        if (!ensureCode()) return;
+        if (!confirm('Alle Trainingsdaten löschen? (Spieler bleiben erhalten)')) return;
+
+        document.querySelectorAll('table[data-week] tbody tr').forEach(row => {
+          row.querySelectorAll('input[type="number"]').forEach(inp => inp.value = '');
+          row.querySelectorAll('input[data-role="pace"]').forEach(inp => inp.value = '');
+          row.querySelectorAll('input[type="checkbox"]').forEach(chk => chk.checked = false);
+        });
+
+        const state = getStateFromDOM();
+
+        Object.keys(state.weeks).forEach(weekId => {
+          Object.keys(state.weeks[weekId]).forEach(player => {
+            state.weeks[weekId][player] = {
+              istKm: '',
+              minuten: '',
+              pace: '',
+              sprints: false,
+              seil: false,
+              kraft: false,
+              jonglieren: false,
+              jonglierenAnzahl: '',
+              video: false
+            };
+          });
+        });
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        alert('Alle Trainingsdaten wurden gelöscht.\nSpieler bleiben erhalten.');
+      });
+    });
+  </script>
+
+</body>
+</html>
