@@ -14,11 +14,13 @@
     .info, .small-hint { font-size: 0.85rem; color: #555; line-height: 1.35; }
     .small-hint { color: #777; }
     .code-hint { font-weight: bold; color: #b00; }
-    .week-block, .summary-block { border: 1px solid #ccc; padding: 12px; margin-bottom: 18px; border-radius: 8px; background: #f9f9f9; }
+    .week-block, .summary-block, .intro-block { border: 1px solid #ccc; padding: 12px; margin-bottom: 18px; border-radius: 8px; background: #f9f9f9; }
+    .intro-block { background: #f7fbff; }
     .summary-block { border: 2px solid #666; background: #f5f5f5; }
     .week-header, .summary-buttons, .control-buttons { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
     .summary-buttons, .control-buttons { justify-content: flex-start; margin: 10px 0; }
-    .week-text { white-space: pre-wrap; background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-top: 8px; font-size: 0.95rem; line-height: 1.35; }
+    .week-text, .feedback-text { white-space: pre-wrap; background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-top: 8px; font-size: 0.95rem; line-height: 1.35; }
+    .feedback-text { background: #fffdf5; }
     button { padding: 8px 10px; border-radius: 6px; border: 1px solid #888; cursor: pointer; background: #e8e8e8; font-size: 0.85rem; }
     .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     table { width: 100%; min-width: 980px; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; background: #fff; }
@@ -28,11 +30,28 @@
     input[type="text"] { width: 72px; padding: 5px; border: 1px solid #aaa; border-radius: 4px; }
     input.pace { width: 75px; background: #f0f0f0; }
     input[type="checkbox"] { width: 20px; height: 20px; }
-    @media (max-width: 600px) { body { padding: 10px; } h1 { font-size: 1.25rem; } h2 { font-size: 1.05rem; } .week-block, .summary-block { padding: 10px; } button.copy-btn, button.control-btn { width: 100%; } }
+    @media (max-width: 600px) { body { padding: 10px; } h1 { font-size: 1.25rem; } h2 { font-size: 1.05rem; } .week-block, .summary-block, .intro-block { padding: 10px; } button.copy-btn, button.control-btn, button.feedback-btn { width: 100%; } }
   </style>
 </head>
 <body>
   <h1>D1 Sommerferien-Vorbereitung</h1>
+
+  <section class="intro-block">
+    <div class="week-text">📋 Benötigte Sachen
+
+📱 Running-App (falls jemand noch nicht in der Community ist, bitte kurz Bescheid geben, dann werde ich euch einladen)
+
+⚽ Fußball
+
+🪢 Springseil
+
+🚴 Fahrradfahren kann alternativ zum Joggen genutzt werden und sollte vom Umfang her vergleichbar sein. Bitte ohne E-Unterstützung fahren.
+
+💡 Wichtiger Hinweis
+
+Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder machen die Übungen in erster Linie für sich selbst. Wer die Aufgaben regelmäßig erledigt, startet fitter, schneller und technisch besser vorbereitet in die neue D1-Saison.</div>
+  </section>
+
   <p class="info">In den Tabellen trägst du pro Spieler <strong>Ist-Kilometer</strong>, <strong>Minuten</strong> und <strong>Jonglier-Anzahl</strong> ein. Die <strong>Pace</strong> wird automatisch berechnet.</p>
   <p class="small-hint">Komma oder Punkt funktioniert, z. B. 3,5 oder 3.5.<br><span class="code-hint">Sicherheits-Code für neue Spieler, Spieler löschen & Zurücksetzen: 123456</span></p>
 
@@ -66,8 +85,12 @@
     const SECURITY_CODE = '123456';
     let codeValidUntil = 0;
 
+    function feedbackTemplate() {
+      return `📩 Rückmeldung an das Trainerteam\n\n🏃 Joggen / 🚴 Fahrradfahren über die Running-App ✅\n\n⚡ Sprinttraining ✅\n\n🪢 Seilspringen ✅\n\n💪 Krafttraining ✅\n\n⚽ Pass-Challenge ✅\n\n🎯 Jonglieren: _____ Kontakte\n\n🎥 Videos gesendet ✅\n\nFalls etwas nicht erledigt wurde, bitte das ✅ durch ein ❌ ersetzen.`;
+    }
+
     function weekText(w) {
-      return `✅ Woche ${w.id}\n\n🪢 Seilspringen:\n${w.seil}\n\n🏃 Joggen: ${w.sollKm} km\n\n⚡ Sprinttraining:\n${w.sprint}\n➤ 30 Sek. Pause zwischen den Sprints\n\n💪 Kraftübung:\n${w.kraft}\n\n⚽ Pass-Challenge:\n➤ 1 Minute rechter Fuß\n➤ 1 Minute linker Fuß\n➤ gegen eine Wand oder mit Eltern/Geschwistern\n➤ nach jedem Pass 1–2 schnelle Schritte zurück in die Ballerwartungshaltung und den nächsten Ball aktiv annehmen\n➤ kein Video erforderlich\n\n🎯 Balljonglieren: Ziel: ${w.jong} Kontakte (beidbeinig) – mindestens 5 Versuche\n\n🎥 Videos: 1 × Seilspringen + Kraftübung (1 Satz) + Balljonglieren (bestes Ergebnis)\n\n💡 Die Übungen dürfen gerne auf mehrere Tage der Woche verteilt werden. Das Joggen und das Sprinttraining sollten möglichst an unterschiedlichen Tagen durchgeführt werden. Bitte nicht alle Übungen an einem einzigen Tag erledigen.`;
+      return `✅ Woche ${w.id}\n\n🪢 Seilspringen:\n${w.seil}\n\n🏃 Joggen / 🚴 Fahrradfahren über die Running-App: ${w.sollKm} km Joggen oder Fahrradfahren vom Umfang her vergleichbar\n\n⚡ Sprinttraining:\n${w.sprint}\n➤ 30 Sek. Pause zwischen den Sprints\n\n💪 Kraftübung:\n${w.kraft}\n\n⚽ Pass-Challenge:\n➤ 1 Minute rechter Fuß\n➤ 1 Minute linker Fuß\n➤ gegen eine Wand oder mit Eltern/Geschwistern\n➤ nach jedem Pass 1–2 schnelle Schritte zurück in die Ballerwartungshaltung und den nächsten Ball aktiv annehmen\n➤ kein Video erforderlich\n\n🎯 Balljonglieren: Ziel: ${w.jong} Kontakte (beidbeinig) – mindestens 5 Versuche\n\n🎥 Videos: 1 × Seilspringen + Kraftübung (1 Satz) + Balljonglieren (bestes Ergebnis)\n\n💡 Die Übungen dürfen gerne auf mehrere Tage der Woche verteilt werden. Das Joggen/Fahrradfahren und das Sprinttraining sollten möglichst an unterschiedlichen Tagen durchgeführt werden. Bitte nicht alle Übungen an einem einzigen Tag erledigen.`;
     }
 
     function sortPlayers(players) { return Array.from(new Set(players.filter(Boolean))).sort((a,b)=>a.localeCompare(b,'de')); }
@@ -143,9 +166,11 @@
       const weeksEl = document.getElementById('weeks'); weeksEl.innerHTML = '';
       WEEKS.forEach(w => {
         const block = document.createElement('section'); block.className = 'week-block';
-        block.innerHTML = `<div class="week-header"><h2>D1 Vorbereitung – Woche ${w.id} (Soll: ${w.sollKm} km)</h2><button class="copy-btn">Wochen-Text kopieren</button></div><div class="week-text"></div><h3>Tracking Woche ${w.id}</h3><div class="table-wrap"><table data-week="${w.id}" data-soll-km="${w.sollKm}"><thead><tr><th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th><th>Pace</th><th>Sprints</th><th>Seilspringen</th><th>Kraft</th><th>Pass-Challenge</th><th>Jonglieren</th><th>Jonglieren Anzahl</th><th>Video</th></tr></thead><tbody></tbody></table></div>`;
+        block.innerHTML = `<div class="week-header"><h2>D1 Vorbereitung – Woche ${w.id} (Soll: ${w.sollKm} km)</h2><button class="copy-btn">Wochen-Text kopieren</button></div><div class="week-text"></div><h3>Rückmeldung Eltern</h3><button class="feedback-btn">Rückmeldung kopieren</button><div class="feedback-text"></div><h3>Tracking Woche ${w.id}</h3><div class="table-wrap"><table data-week="${w.id}" data-soll-km="${w.sollKm}"><thead><tr><th>Spieler</th><th>Soll km</th><th>Ist km</th><th>Minuten</th><th>Pace</th><th>Sprints</th><th>Seilspringen</th><th>Kraft</th><th>Pass-Challenge</th><th>Jonglieren</th><th>Jonglieren Anzahl</th><th>Video</th></tr></thead><tbody></tbody></table></div>`;
         const text = weekText(w); block.querySelector('.week-text').textContent = text;
+        const feedback = feedbackTemplate(); block.querySelector('.feedback-text').textContent = feedback;
         block.querySelector('.copy-btn').addEventListener('click', function(){ const b=this; copyToClipboard(text,()=>{const o=b.textContent; b.textContent='Text kopiert ✔'; setTimeout(()=>b.textContent=o,1500);}); });
+        block.querySelector('.feedback-btn').addEventListener('click', function(){ const b=this; copyToClipboard(feedback,()=>{const o=b.textContent; b.textContent='Rückmeldung kopiert ✔'; setTimeout(()=>b.textContent=o,1500);}); });
         weeksEl.appendChild(block);
       });
       renderRows(state); renderButtons(state.players);
@@ -201,7 +226,7 @@
 
     function buildSummary(player) {
       let text = `D1 Sommerferien-Vorbereitung\n${player}\n\n`;
-      WEEKS.forEach(w => { const d=weekData(player,w.id); text += `Woche ${w.id} (Soll ${d.sollKm} km):\n🏃 Ist: ${d.istKm} km in ${d.minuten} Min`; if(d.pace !== '-') text += ` (Pace: ${d.pace} min/km)`; text += `\n⚡ Sprinttraining: ${d.sprints}\n🪢 Seilspringen: ${d.seil}\n💪 Kraftübungen: ${d.kraft}\n⚽ Pass-Challenge: ${d.pass}\n🎯 Jonglieren: ${d.jonglieren} (Anzahl: ${d.jonglierenAnzahl})\n🎥 Video gesendet: ${d.video}\n\n`; });
+      WEEKS.forEach(w => { const d=weekData(player,w.id); text += `Woche ${w.id} (Soll ${d.sollKm} km):\n🏃/🚴 App: ${d.istKm} km in ${d.minuten} Min`; if(d.pace !== '-') text += ` (Pace: ${d.pace} min/km)`; text += `\n⚡ Sprinttraining: ${d.sprints}\n🪢 Seilspringen: ${d.seil}\n💪 Kraftübungen: ${d.kraft}\n⚽ Pass-Challenge: ${d.pass}\n🎯 Jonglieren: ${d.jonglieren} (Anzahl: ${d.jonglierenAnzahl})\n🎥 Video gesendet: ${d.video}\n\n`; });
       return text.trim();
     }
 
