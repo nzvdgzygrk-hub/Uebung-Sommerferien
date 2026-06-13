@@ -68,7 +68,7 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
   </div>
 
   <script>
-    const DEFAULT_PLAYERS = ['Ahmet','Aos','Benny','David','Efe','Elias','Jannik','Jonas','Julian','Kiril','Malik','Mario','Mika','Noel','Paul B','Paul H','Piotrek','Semih'];
+    const DEFAULT_PLAYERS = ['Ahmet','Aos','Benjamin','Benny','David','Efe','Elias','Jannik','Jonas','Julian','Kiril','Malik','Mario','Mika','Noah','Noel','Paul B','Paul H','Piotrek','Semih'];
 
     const WEEKS = [
       { id: 1, sollKm: '3', sprint: '3 × 20 m Sprint', seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed', kraft: '3 × 15 Ausfallschritte pro Bein', jong: 25 },
@@ -85,11 +85,57 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
     let codeValidUntil = 0;
 
     function feedbackTemplate() {
-      return `📩 Rückmeldung an das Trainerteam\n\nHinweis: Bitte nur die aktuelle Woche zurückmelden.\n\n🏃 Joggen / 🚴 Fahrradfahren über die Running-App ✅\n\n⚡ Sprinttraining ✅\n\n🪢 Seilspringen ✅\n\n💪 Krafttraining ✅\n\n⚽ Pass-Challenge ✅\n\n🎯 Jonglieren: _____ Kontakte\n\n🎥 Videos gesendet ✅\n\nFalls etwas nicht erledigt wurde, bitte das ✅ durch ein ❌ ersetzen.`;
+      return `📩 Rückmeldung an das Trainerteam
+
+Hinweis: Bitte nur die aktuelle Woche zurückmelden.
+
+🏃 Joggen / 🚴 Fahrradfahren über die Running-App ✅
+
+⚡ Sprinttraining ✅
+
+🪢 Seilspringen ✅
+
+💪 Krafttraining ✅
+
+⚽ Pass-Challenge ✅
+
+🎯 Jonglieren: _____ Kontakte
+
+🎥 Videos gesendet ✅
+
+Falls etwas nicht erledigt wurde, bitte das ✅ durch ein ❌ ersetzen.`;
     }
 
     function weekText(w) {
-      return `✅ Woche ${w.id}\n\n🪢 Seilspringen:\n${w.seil}\n\n🏃 Joggen / 🚴 Fahrradfahren über die Running-App: ${w.sollKm} km Joggen oder Fahrradfahren vom Umfang her vergleichbar\n➡️ Fahrradfahren bitte ohne E-Unterstützung.\n\n⚡ Sprinttraining:\n${w.sprint}\n➤ 30 Sek. Pause zwischen den Sprints\n\n💪 Kraftübung:\n${w.kraft}\n\n⚽ Pass-Challenge:\n➤ 1 Minute rechter Fuß\n➤ 1 Minute linker Fuß\n➤ gegen eine Wand oder mit Eltern/Geschwistern\n➤ nach jedem Pass 1–2 schnelle Schritte zurück in die Ballerwartungshaltung und den nächsten Ball aktiv annehmen\n➤ kein Video erforderlich\n\n🎯 Balljonglieren: Ziel: ${w.jong} Kontakte (beidbeinig) – mindestens 5 Versuche\n\n🎥 Videos: 1 × Seilspringen + Kraftübung (1 Satz) + Balljonglieren (bestes Ergebnis)\n\n💡 Die Übungen dürfen gerne auf mehrere Tage der Woche verteilt werden. Das Joggen/Fahrradfahren und das Sprinttraining sollten möglichst an unterschiedlichen Tagen durchgeführt werden. Bitte nicht alle Übungen an einem einzigen Tag erledigen.\n\n${feedbackTemplate()}`;
+      return `✅ Woche ${w.id}
+
+🪢 Seilspringen:
+${w.seil}
+
+🏃 Joggen / 🚴 Fahrradfahren über die Running-App: ${w.sollKm} km Joggen oder Fahrradfahren vom Umfang her vergleichbar
+➡️ Fahrradfahren bitte ohne E-Unterstützung.
+
+⚡ Sprinttraining:
+${w.sprint}
+➤ 30 Sek. Pause zwischen den Sprints
+
+💪 Kraftübung:
+${w.kraft}
+
+⚽ Pass-Challenge:
+➤ 1 Minute rechter Fuß
+➤ 1 Minute linker Fuß
+➤ gegen eine Wand oder mit Eltern/Geschwistern
+➤ nach jedem Pass 1–2 schnelle Schritte zurück in die Ballerwartungshaltung und den nächsten Ball aktiv annehmen
+➤ kein Video erforderlich
+
+🎯 Balljonglieren: Ziel: ${w.jong} Kontakte (beidbeinig) – mindestens 5 Versuche
+
+🎥 Videos: 1 × Seilspringen + Kraftübung (1 Satz) + Balljonglieren (bestes Ergebnis)
+
+💡 Die Übungen dürfen gerne auf mehrere Tage der Woche verteilt werden. Das Joggen/Fahrradfahren und das Sprinttraining sollten möglichst an unterschiedlichen Tagen durchgeführt werden. Bitte nicht alle Übungen an einem einzigen Tag erledigen.
+
+${feedbackTemplate()}`;
     }
 
     function sortPlayers(players) { return Array.from(new Set(players.filter(Boolean))).sort((a,b)=>a.localeCompare(b,'de')); }
@@ -222,8 +268,20 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
     }
 
     function buildSummary(player) {
-      let text = `D1 Sommerferien-Vorbereitung\n${player}\n\n`;
-      WEEKS.forEach(w => { const d=weekData(player,w.id); text += `Woche ${w.id} (Soll ${d.sollKm} km):\n🏃/🚴 App: ${d.istKm} km in ${d.minuten} Min`; if(d.pace !== '-') text += ` (Pace: ${d.pace} min/km)`; text += `\n⚡ Sprinttraining: ${d.sprints}\n🪢 Seilspringen: ${d.seil}\n💪 Kraftübungen: ${d.kraft}\n⚽ Pass-Challenge: ${d.pass}\n🎯 Jonglieren: ${d.jonglieren} (Anzahl: ${d.jonglierenAnzahl})\n🎥 Video gesendet: ${d.video}\n\n`; });
+      let text = `D1 Sommerferien-Vorbereitung
+${player}
+
+`;
+      WEEKS.forEach(w => { const d=weekData(player,w.id); text += `Woche ${w.id} (Soll ${d.sollKm} km):
+🏃/🚴 App: ${d.istKm} km in ${d.minuten} Min`; if(d.pace !== '-') text += ` (Pace: ${d.pace} min/km)`; text += `
+⚡ Sprinttraining: ${d.sprints}
+🪢 Seilspringen: ${d.seil}
+💪 Kraftübungen: ${d.kraft}
+⚽ Pass-Challenge: ${d.pass}
+🎯 Jonglieren: ${d.jonglieren} (Anzahl: ${d.jonglierenAnzahl})
+🎥 Video gesendet: ${d.video}
+
+`; });
       return text.trim();
     }
 
