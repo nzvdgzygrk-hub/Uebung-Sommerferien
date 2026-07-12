@@ -71,12 +71,42 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
     const DEFAULT_PLAYERS = ['Ahmet','Aos','Benjamin','David','Efe','Elias','Jannik','Jonas','Julian','Kiril','Malik','Mario','Mika','Noah','Noel','Paul B','Paul H','Piotrek','Semih'];
 
     const WEEKS = [
-      { id: 1, sollKm: '3', sprint: '3 × 20 m Sprint', seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed', kraft: '3 × 15 Ausfallschritte pro Bein', jong: 25 },
-      { id: 2, sollKm: '3,5', sprint: '4 × 20 m Sprint', seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed', kraft: '3 × 20 Sit-ups', jong: 30 },
-      { id: 3, sollKm: '4', sprint: '5 × 20 m Sprint', seil: '3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed', kraft: '3 × 12 Liegestütze', jong: 35 },
-      { id: 4, sollKm: '4,5', sprint: '5 × 25 m Sprint', seil: '3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed', kraft: '3 × 60 Sek. Plank', jong: 40 },
-      { id: 5, sollKm: '4,8', sprint: '6 × 25 m Sprint', seil: '3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed', kraft: '3 × 10 Sprungkniebeugen\n➤ explosiv hochspringen, sauber und weich landen', jong: 45 },
-      { id: 6, sollKm: '5', sprint: '8 × 25 m Sprint', seil: '3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed', kraft: '3 × 45 Sek. Bergsteiger (Mountain Climbers)', jong: 50 }
+      {
+        id: 1, sollKm: '3', sprint: '3 × 20 m Sprint',
+        seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed',
+        kraft: '3 × 15 Ausfallschritte pro Bein', jong: 25,
+        pass: '➤ 1 Minute nur rechter Fuß\n➤ 1 Minute nur linker Fuß\n➤ Ball annehmen und mit dem zweiten Kontakt sauber zurückpassen'
+      },
+      {
+        id: 2, sollKm: '3,5', sprint: '4 × 20 m Sprint',
+        seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed',
+        kraft: '3 × 20 Sit-ups', jong: 30,
+        pass: '➤ 2 × 90 Sekunden abwechselnd rechts und links\n➤ Annahme mit einem Fuß, Pass mit dem anderen Fuß\n➤ nach jedem Pass kurz seitlich bewegen'
+      },
+      {
+        id: 3, sollKm: '4', sprint: '5 × 20 m Sprint',
+        seil: '3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed',
+        kraft: '3 × 12 Liegestütze', jong: 35,
+        pass: '➤ 3 × 60 Sekunden Direktpass ohne vorherige Ballannahme\n➤ rechter und linker Fuß im Wechsel\n➤ zwischen den Durchgängen 30 Sekunden Pause'
+      },
+      {
+        id: 4, sollKm: '4,5', sprint: '5 × 25 m Sprint',
+        seil: '3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed',
+        kraft: '3 × 60 Sek. Plank', jong: 40,
+        pass: '➤ Ball seitlich mitnehmen und zurückpassen\n➤ 1 Minute nach rechts mitnehmen, 1 Minute nach links mitnehmen\n➤ Körper vor der Annahme öffnen und in Spielrichtung schauen'
+      },
+      {
+        id: 5, sollKm: '4,8', sprint: '6 × 25 m Sprint',
+        seil: '3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed',
+        kraft: '3 × 10 Sprungkniebeugen\n➤ explosiv hochspringen, sauber und weich landen', jong: 45,
+        pass: '➤ 3 × 60 Sekunden: zwei Direktpässe, danach einmal annehmen und seitlich mitnehmen\n➤ beide Füße benutzen\n➤ nach jedem Pass schnell wieder in die Ballerwartungshaltung kommen'
+      },
+      {
+        id: 6, sollKm: '5', sprint: '8 × 25 m Sprint',
+        seil: '3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed',
+        kraft: '3 × 45 Sek. Bergsteiger (Mountain Climbers)', jong: 50,
+        pass: '➤ 4 × 60 Sekunden Pass-Mix\n➤ 1. Durchgang rechter Fuß, 2. linker Fuß, 3. Direktpässe, 4. freie Kombination\n➤ Tempo hochhalten, aber weiterhin sauber und kontrolliert passen'
+      }
     ];
 
     const STORAGE_KEY = 'sommerferien_d1_state_v3';
@@ -123,10 +153,8 @@ ${w.sprint}
 ${w.kraft}
 
 ⚽ Pass-Challenge:
-➤ 1 Minute rechter Fuß
-➤ 1 Minute linker Fuß
+${w.pass}
 ➤ gegen eine Wand oder mit Eltern/Geschwistern
-➤ nach jedem Pass 1–2 schnelle Schritte zurück in die Ballerwartungshaltung und den nächsten Ball aktiv annehmen
 ➤ kein Video erforderlich
 
 🎯 Balljonglieren: Ziel: ${w.jong} Kontakte (beidbeinig) – mindestens 5 Versuche
