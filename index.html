@@ -2,52 +2,15 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>D1 Sommerferien-Vorbereitung</title>
   <style>
-    * { box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; margin: 0; padding: 14px; max-width: 1200px; background: #fff; color: #222; }
-    h1, h2, h3 { margin: 0 0 0.4rem; }
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.15rem; }
-    h3 { font-size: 1rem; margin-top: 12px; }
-    .info, .small-hint { font-size: 0.85rem; color: #555; line-height: 1.35; }
-    .small-hint { color: #777; }
-    .code-hint { font-weight: bold; color: #b00; }
-    .week-block, .summary-block, .intro-block { border: 1px solid #ccc; padding: 12px; margin-bottom: 18px; border-radius: 8px; background: #f9f9f9; }
-    .intro-block { background: #f7fbff; }
-    .summary-block { border: 2px solid #666; background: #f5f5f5; }
-    .week-header, .summary-buttons, .control-buttons { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
-    .summary-buttons, .control-buttons { justify-content: flex-start; margin: 10px 0; }
-    .week-text { white-space: pre-wrap; background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-top: 8px; font-size: 0.95rem; line-height: 1.35; }
-    button, select { padding: 8px 10px; border-radius: 6px; border: 1px solid #888; background: #e8e8e8; font-size: 0.85rem; }
-    button { cursor: pointer; }
-    .activity-select { width: 120px; background: #fff; font-weight: bold; }
-    .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    table { width: 100%; min-width: 1110px; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; background: #fff; }
-    th, td { border: 1px solid #ccc; padding: 5px 6px; text-align: center; vertical-align: middle; }
-    th { background: #eee; }
-    td.player-name { text-align: left; font-weight: bold; white-space: nowrap; position: sticky; left: 0; background: #fff; z-index: 1; }
-    input[type="text"] { width: 72px; padding: 5px; border: 1px solid #aaa; border-radius: 4px; }
-    input.pace { width: 75px; background: #f0f0f0; }
-    input[type="checkbox"] { width: 20px; height: 20px; }
-    .not-applicable { color: #888; font-weight: bold; }
-    tr.training-row td:not(.player-name):not(.activity-cell) { background: #f4f4f4; }
-    [hidden] { display: none !important; }
-    @media (max-width: 600px) {
-      body { padding: 10px; }
-      h1 { font-size: 1.25rem; }
-      h2 { font-size: 1.05rem; }
-      .week-block, .summary-block, .intro-block { padding: 10px; }
-      button.copy-btn, button.control-btn { width: 100%; }
-    }
+    *{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;padding:14px;max-width:1200px;background:#fff;color:#222}h1,h2,h3{margin:0 0 .4rem}h1{font-size:1.5rem}h2{font-size:1.15rem}h3{font-size:1rem;margin-top:12px}.info,.small-hint{font-size:.85rem;color:#555;line-height:1.35}.small-hint{color:#777}.code-hint{font-weight:bold;color:#b00}.week-block,.summary-block,.intro-block{border:1px solid #ccc;padding:12px;margin-bottom:18px;border-radius:8px;background:#f9f9f9}.intro-block{background:#f7fbff}.summary-block{border:2px solid #666;background:#f5f5f5}.week-header,.summary-buttons,.control-buttons{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.summary-buttons,.control-buttons{justify-content:flex-start;margin:10px 0}.week-text{white-space:pre-wrap;background:#fff;border:1px solid #ddd;padding:10px;border-radius:6px;margin-top:8px;font-size:.95rem;line-height:1.35}button,select{padding:8px 10px;border-radius:6px;border:1px solid #888;background:#e8e8e8;font-size:.85rem}button{cursor:pointer}.activity-select{width:120px;background:#fff;font-weight:bold}.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;min-width:1110px;border-collapse:collapse;margin-top:10px;font-size:.85rem;background:#fff}th,td{border:1px solid #ccc;padding:5px 6px;text-align:center;vertical-align:middle}th{background:#eee}td.player-name{text-align:left;font-weight:bold;white-space:nowrap;position:sticky;left:0;background:#fff;z-index:1}input[type=text]{width:72px;padding:5px;border:1px solid #aaa;border-radius:4px}input.pace{width:75px;background:#f0f0f0}input[type=checkbox]{width:20px;height:20px}.not-applicable{color:#888;font-weight:bold}tr.training-row td:not(.player-name):not(.activity-cell){background:#f4f4f4}[hidden]{display:none!important}@media(max-width:600px){body{padding:10px}h1{font-size:1.25rem}h2{font-size:1.05rem}.week-block,.summary-block,.intro-block{padding:10px}button.copy-btn,button.control-btn{width:100%}}
   </style>
 </head>
 <body>
   <h1>D1 Sommerferien-Vorbereitung</h1>
-
-  <section class="intro-block">
-    <div class="week-text">📋 Benötigte Sachen
+  <section class="intro-block"><div class="week-text">📋 Benötigte Sachen
 
 📱 Running-App (falls jemand noch nicht in der Community ist, bitte kurz Bescheid geben, dann werde ich euch einladen)
 
@@ -59,14 +22,10 @@
 
 💡 Wichtiger Hinweis
 
-Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder machen die Übungen in erster Linie für sich selbst. Wer die Aufgaben regelmäßig erledigt, startet fitter, schneller und technisch besser vorbereitet in die neue D1-Saison.</div>
-  </section>
-
+Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder machen die Übungen in erster Linie für sich selbst. Wer die Aufgaben regelmäßig erledigt, startet fitter, schneller und technisch besser vorbereitet in die neue D1-Saison.</div></section>
   <p class="info">Wähle pro Spieler <strong>🏃 Joggen</strong>, <strong>🚴 Fahrrad</strong> oder <strong>⚽ Training</strong>. Beim Joggen werden Kilometer, Minuten und Pace erfasst, beim Fahrrad nur die Kilometer. Sobald das Training bei der SSVg begonnen hat, wählst du „Training“ – dann ist keine weitere Eingabe erforderlich.</p>
   <p class="small-hint">Komma oder Punkt funktioniert, z. B. 3,5 oder 3.5.<br><span class="code-hint">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span></p>
-
   <main id="weeks"></main>
-
   <div class="summary-block">
     <h2>Ferien-Endübersicht</h2>
     <p>Mit den Buttons kopierst du pro Spieler die Übersicht von <strong>Woche 1 bis Woche 6</strong> für WhatsApp.</p>
@@ -81,31 +40,27 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
     </div>
     <p class="small-hint">Das JSON-Backup enthält die Spielerliste und alle Einträge aus Woche 1 bis Woche 6.</p>
   </div>
+<script>
+const DEFAULT_PLAYERS=['Ahmet','Aos','Benjamin','David','Efe','Elias','Jannik','Jonas','Julian','Kiril','Malik','Mario','Mika','Noah','Noel','Paul B','Paul H','Piotrek','Semih'];
+const WEEKS=[
+{id:1,sollKm:'3',sprint:'3 × 20 m Sprint',seil:'3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed',kraft:'3 × 15 Ausfallschritte pro Bein',jong:25,pass:'➤ 40 Pässe mit dem rechten Fuß\n➤ 40 Pässe mit dem linken Fuß\n➤ nach jedem Pass 1–2 schnelle Schritte zurück und wieder in die Ballerwartungshaltung kommen'},
+{id:2,sollKm:'3,5',sprint:'4 × 20 m Sprint',seil:'3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed',kraft:'3 × 20 Sit-ups',jong:30,pass:'➤ 40 Pässe mit dem rechten Fuß\n➤ 40 Pässe mit dem linken Fuß\n➤ nach jedem Pass 1–2 schnelle Schritte zur Seite und wieder bereit zum Ball stehen'},
+{id:3,sollKm:'4',sprint:'5 × 20 m Sprint',seil:'3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed',kraft:'3 × 12 Liegestütze',jong:35,pass:'➤ Ball mit rechts zur Seite mitnehmen und wieder passen\n➤ danach mit links zur anderen Seite mitnehmen und passen\n➤ 40 Pässe pro Seite – den Ball direkt in die neue Richtung mitnehmen'},
+{id:4,sollKm:'4,5',sprint:'5 × 25 m Sprint',seil:'3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed',kraft:'3 × 60 Sek. Plank',jong:40,pass:'➤ leicht seitlich zum Ball stehen\n➤ Ball mit dem hinteren Fuß annehmen, zur anderen Seite mitnehmen und passen\n➤ danach die Seite wechseln – 40 Pässe pro Seite'},
+{id:5,sollKm:'4,8',sprint:'6 × 25 m Sprint',seil:'3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed',kraft:'3 × 10 Sprungkniebeugen\n➤ explosiv hochspringen, sauber und weich landen',jong:45,pass:'➤ Ball mit rechts annehmen und mit links passen\n➤ Ball mit links annehmen und mit rechts passen\n➤ jeweils 40 Pässe und nach jedem Pass wieder bereit stehen'},
+{id:6,sollKm:'5',sprint:'8 × 25 m Sprint',seil:'3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed',kraft:'3 × 45 Sek. Bergsteiger (Mountain Climbers)',jong:50,pass:'➤ 40 Pässe mit rechts\n➤ 40 Pässe mit links\n➤ 40 Pässe mit seitlicher Ballmitnahme\n➤ 40 Pässe abwechselnd mit rechts und links – nur saubere Pässe zählen'}
+];
+const STORAGE_KEY='sommerferien_d1_state_v3',OLD_KEYS=['sommerferien_u12_state_v2','sommerferien_u12_state_v1'],SECURITY_CODE='123456',ACTIVITIES=['joggen','fahrrad','training'];
+let codeValidUntil=0;
+function feedbackTemplate(){return `📩 Rückmeldung an das Trainerteam
 
-  <script>
-    const DEFAULT_PLAYERS = ['Ahmet','Aos','Benjamin','David','Efe','Elias','Jannik','Jonas','Julian','Kiril','Malik','Mario','Mika','Noah','Noel','Paul B','Paul H','Piotrek','Semih'];
+Hinweis: Bitte meldet nur die aktuelle Woche zurück.
 
-    const WEEKS = [
-      { id: 1, sollKm: '3', sprint: '3 × 20 m Sprint', seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed', kraft: '3 × 15 Ausfallschritte pro Bein', jong: 25, pass: '➤ 40 Pässe mit dem rechten Fuß\n➤ 40 Pässe mit dem linken Fuß\n➤ nach jedem Pass 1–2 schnelle Schritte zurück und wieder in die Ballerwartungshaltung kommen' },
-      { id: 2, sollKm: '3,5', sprint: '4 × 20 m Sprint', seil: '3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed', kraft: '3 × 20 Sit-ups', jong: 30, pass: '➤ 40 Pässe mit dem rechten Fuß\n➤ 40 Pässe mit dem linken Fuß\n➤ nach jedem Pass 1–2 schnelle Schritte zur Seite und wieder bereit zum Ball stehen' },
-      { id: 3, sollKm: '4', sprint: '5 × 20 m Sprint', seil: '3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed', kraft: '3 × 12 Liegestütze', jong: 35, pass: '➤ Ball mit rechts zur Seite mitnehmen und wieder passen\n➤ danach mit links zur anderen Seite mitnehmen und passen\n➤ 40 Pässe pro Seite – den Ball direkt in die neue Richtung mitnehmen' },
-      { id: 4, sollKm: '4,5', sprint: '5 × 25 m Sprint', seil: '3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed', kraft: '3 × 60 Sek. Plank', jong: 40, pass: '➤ leicht seitlich zum Ball stehen\n➤ Ball mit dem hinteren Fuß annehmen, zur anderen Seite mitnehmen und passen\n➤ danach die Seite wechseln – 40 Pässe pro Seite' },
-      { id: 5, sollKm: '4,8', sprint: '6 × 25 m Sprint', seil: '3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed', kraft: '3 × 10 Sprungkniebeugen\n➤ explosiv hochspringen, sauber und weich landen', jong: 45, pass: '➤ Ball mit rechts annehmen und mit links passen\n➤ Ball mit links annehmen und mit rechts passen\n➤ jeweils 40 Pässe und nach jedem Pass wieder bereit stehen' },
-      { id: 6, sollKm: '5', sprint: '8 × 25 m Sprint', seil: '3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed', kraft: '3 × 45 Sek. Bergsteiger (Mountain Climbers)', jong: 50, pass: '➤ 40 Pässe mit rechts\n➤ 40 Pässe mit links\n➤ 40 Pässe mit seitlicher Ballmitnahme\n➤ 40 Pässe abwechselnd mit rechts und links – nur saubere Pässe zählen' }
-    ];
+🏃🚴 Bitte gebt pro Woche nur eine Einheit an. Auch wenn ihr mehrmals joggen oder Fahrrad fahren wart, tragt bitte nur einen Lauf oder eine Fahrradrunde ein.
 
-    const STORAGE_KEY = 'sommerferien_d1_state_v3';
-    const OLD_KEYS = ['sommerferien_u12_state_v2', 'sommerferien_u12_state_v1'];
-    const SECURITY_CODE = '123456';
-    const ACTIVITIES = ['joggen', 'fahrrad', 'training'];
-    let codeValidUntil = 0;
-
-    function feedbackTemplate() {
-      return `📩 Rückmeldung an das Trainerteam
-
-Hinweis: Bitte nur die aktuelle Woche zurückmelden.
-
-🏃 Joggen / 🚴 Fahrradfahren über die Running-App ✅
+🏃 Joggen: _____ km in _____ Minuten
+oder
+🚴 Fahrradfahren: _____ km
 
 ⚡ Sprinttraining ✅
 
@@ -119,11 +74,8 @@ Hinweis: Bitte nur die aktuelle Woche zurückmelden.
 
 🎥 Videos gesendet ✅
 
-Falls etwas nicht erledigt wurde, bitte das ✅ durch ein ❌ ersetzen.`;
-    }
-
-    function weekText(w) {
-      return `✅ Woche ${w.id}
+Falls etwas nicht erledigt wurde, bitte das ✅ durch ein ❌ ersetzen.`}
+function weekText(w){return `✅ Woche ${w.id}
 
 🪢 Seilspringen:
 ${w.seil}
@@ -149,378 +101,36 @@ ${w.pass}
 
 💡 Die Übungen dürfen gerne auf mehrere Tage der Woche verteilt werden. Das Joggen/Fahrradfahren und das Sprinttraining sollten möglichst an unterschiedlichen Tagen durchgeführt werden. Bitte nicht alle Übungen an einem einzigen Tag erledigen.
 
-${feedbackTemplate()}`;
-    }
-
-    function sortPlayers(players) { return Array.from(new Set(players.filter(Boolean))).sort((a,b) => a.localeCompare(b,'de')); }
-    function blankData() { return { aktivitaet:'joggen', istKm:'', minuten:'', pace:'', sprints:false, seil:false, kraft:false, pass:false, jonglieren:false, jonglierenAnzahl:'', video:false }; }
-    function parseNumber(v) { return parseFloat(String(v || '').replace(',', '.')); }
-    function sanitizeDecimal(input) { input.value = input.value.replace(/[^0-9,.]/g, ''); }
-    function calculatePace(kmVal, minVal) { const km=parseNumber(kmVal), min=parseNumber(minVal); if(!(km>0&&min>0)) return ''; const p=min/km; let m=Math.floor(p), s=Math.round((p-m)*60); if(s===60){m++;s=0;} return m + ':' + String(s).padStart(2,'0'); }
-    function yn(cb) { return cb && cb.checked ? 'Ja' : 'Nein'; }
-
-    function copyToClipboard(text, onSuccess) {
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => onSuccess && onSuccess()).catch(fallback);
-      else fallback();
-      function fallback() { const t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); onSuccess && onSuccess(); } catch(e) { alert('Kopieren nicht möglich. Bitte manuell kopieren.'); } t.remove(); }
-    }
-
-    function ensureCode() {
-      if (Date.now() < codeValidUntil) return true;
-      const entered = prompt('Bitte Sicherheits-Code eingeben:');
-      if (entered === null) return false;
-      if (entered.trim() === SECURITY_CODE) { codeValidUntil = Date.now() + 3 * 60 * 1000; return true; }
-      alert('Falscher Code.');
-      return false;
-    }
-
-    function normalizeName(name) { return name === 'Piotr' ? 'Piotrek' : name; }
-    function normalizeActivity(value) { return ACTIVITIES.includes(value) ? value : 'joggen'; }
-
-    function loadState() {
-      let state = null;
-      try { state = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) {}
-      if (!state) {
-        for (const key of OLD_KEYS) {
-          try { state = JSON.parse(localStorage.getItem(key)); } catch(e) {}
-          if (state) break;
-        }
-      }
-      if (!state || !Array.isArray(state.players)) state = { players: DEFAULT_PLAYERS.slice(), weeks: {} };
-      state.players = state.players.map(normalizeName);
-      DEFAULT_PLAYERS.forEach(p => { if (!state.players.includes(p)) state.players.push(p); });
-      state.players = sortPlayers(state.players);
-      state.weeks = state.weeks || {};
-      WEEKS.forEach(w => {
-        state.weeks[w.id] = state.weeks[w.id] || {};
-        if (state.weeks[w.id].Piotr) { state.weeks[w.id].Piotrek = state.weeks[w.id].Piotr; delete state.weeks[w.id].Piotr; }
-        state.players.forEach(p => {
-          const data = Object.assign(blankData(), state.weeks[w.id][p] || {});
-          data.aktivitaet = normalizeActivity(data.aktivitaet);
-          if (data.aktivitaet === 'fahrrad') { data.minuten = ''; data.pace = ''; }
-          state.weeks[w.id][p] = data;
-        });
-      });
-      return state;
-    }
-
-    function saveState() {
-      const state = { players: getPlayers(), weeks: {} };
-      document.querySelectorAll('table[data-week]').forEach(table => {
-        const id = table.dataset.week;
-        state.weeks[id] = {};
-        table.querySelectorAll('tbody tr').forEach(row => {
-          const name = row.querySelector('.player-name').textContent.trim();
-          state.weeks[id][name] = {
-            aktivitaet: row.querySelector('[data-role="activity"]').value,
-            istKm: row.querySelector('[data-role="km"]').value,
-            minuten: row.querySelector('[data-role="min"]').value,
-            pace: row.querySelector('[data-role="pace"]').value,
-            sprints: row.querySelector('[data-role="sprints"]').checked,
-            seil: row.querySelector('[data-role="seil"]').checked,
-            kraft: row.querySelector('[data-role="kraft"]').checked,
-            pass: row.querySelector('[data-role="pass"]').checked,
-            jonglieren: row.querySelector('[data-role="jonglieren"]').checked,
-            jonglierenAnzahl: row.querySelector('[data-role="jonglierenAnzahl"]').value,
-            video: row.querySelector('[data-role="video"]').checked
-          };
-        });
-      });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function currentState() {
-      saveState();
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) { return loadState(); }
-    }
-
-    async function exportBackup() {
-      const backup = { app: 'D1 Sommerferien-Vorbereitung', version: 3, exportedAt: new Date().toISOString(), state: currentState() };
-      const date = new Date().toISOString().slice(0, 10);
-      const filename = `d1-sommerferien-backup-${date}.json`;
-      const json = JSON.stringify(backup, null, 2);
-      const file = new File([json], filename, { type: 'application/json' });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: 'D1 Sommerferien-Backup' }); return; }
-        catch(e) { if (e && e.name === 'AbortError') return; }
-      }
-      const url = URL.createObjectURL(file);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    }
-
-    function normalizePlayerData(data) {
-      const clean = blankData();
-      if (!data || typeof data !== 'object') return clean;
-      clean.aktivitaet = normalizeActivity(data.aktivitaet);
-      clean.istKm = data.istKm == null ? '' : String(data.istKm);
-      clean.minuten = clean.aktivitaet === 'fahrrad' || data.minuten == null ? '' : String(data.minuten);
-      clean.pace = clean.aktivitaet === 'fahrrad' || data.pace == null ? '' : String(data.pace);
-      clean.sprints = !!data.sprints;
-      clean.seil = !!data.seil;
-      clean.kraft = !!data.kraft;
-      clean.pass = !!data.pass;
-      clean.jonglieren = !!data.jonglieren;
-      clean.jonglierenAnzahl = data.jonglierenAnzahl == null ? '' : String(data.jonglierenAnzahl);
-      clean.video = !!data.video;
-      return clean;
-    }
-
-    function normalizeImportedState(raw) {
-      const state = raw && raw.state ? raw.state : raw;
-      if (!state || !Array.isArray(state.players) || !state.weeks || typeof state.weeks !== 'object') throw new Error('Ungültige Backup-Struktur');
-      const players = sortPlayers(state.players.filter(name => typeof name === 'string').map(name => normalizeName(name.trim())).filter(Boolean));
-      if (!players.length) throw new Error('Keine Spieler im Backup');
-      const clean = { players, weeks: {} };
-      WEEKS.forEach(w => {
-        const importedWeek = state.weeks[w.id] || {};
-        clean.weeks[w.id] = {};
-        players.forEach(player => { clean.weeks[w.id][player] = normalizePlayerData(importedWeek[player]); });
-      });
-      return clean;
-    }
-
-    function importBackupFile(file) {
-      const input = document.getElementById('backup-file-input');
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const parsed = JSON.parse(String(reader.result || ''));
-          const state = normalizeImportedState(parsed);
-          if (!confirm(`Backup mit ${state.players.length} Spielern laden?\n\nDie aktuell gespeicherten Daten werden überschrieben.`)) return;
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-          const loaded = loadState();
-          render(loaded);
-          saveState();
-          alert('JSON-Backup wurde erfolgreich geladen.');
-        } catch(e) {
-          alert('Die Datei ist kein gültiges Backup. Es wurden keine Daten verändert.');
-        } finally {
-          input.value = '';
-        }
-      };
-      reader.onerror = () => { input.value = ''; alert('Die Backup-Datei konnte nicht gelesen werden.'); };
-      reader.readAsText(file);
-    }
-
-    function setFieldMode(input, dash, visible) {
-      input.hidden = !visible;
-      input.disabled = !visible;
-      dash.hidden = visible;
-    }
-
-    function applyActivityMode(row, clearFields) {
-      const activity = row.querySelector('[data-role="activity"]').value;
-      const isJogging = activity === 'joggen';
-      const isTraining = activity === 'training';
-      const kmInput = row.querySelector('[data-role="km"]');
-      const minInput = row.querySelector('[data-role="min"]');
-      const paceInput = row.querySelector('[data-role="pace"]');
-
-      if (clearFields && activity === 'fahrrad') {
-        minInput.value = '';
-        paceInput.value = '';
-      }
-
-      setFieldMode(kmInput, row.querySelector('[data-role="km-na"]'), !isTraining);
-      setFieldMode(minInput, row.querySelector('[data-role="min-na"]'), isJogging);
-      setFieldMode(paceInput, row.querySelector('[data-role="pace-na"]'), isJogging);
-      row.querySelector('[data-role="soll-value"]').hidden = isTraining;
-      row.querySelector('[data-role="soll-na"]').hidden = !isTraining;
-
-      row.querySelectorAll('[data-training-input]').forEach(input => {
-        const dash = input.parentElement.querySelector('.not-applicable');
-        setFieldMode(input, dash, !isTraining);
-      });
-
-      row.classList.toggle('training-row', isTraining);
-      if (isJogging) paceInput.value = calculatePace(kmInput.value, minInput.value);
-    }
-
-    function render(state) {
-      const weeksEl = document.getElementById('weeks');
-      weeksEl.innerHTML = '';
-      WEEKS.forEach(w => {
-        const block = document.createElement('section');
-        block.className = 'week-block';
-        block.innerHTML = `<div class="week-header"><h2>D1 Vorbereitung – Woche ${w.id} (Soll: ${w.sollKm} km)</h2><button class="copy-btn">Wochen-Text kopieren</button></div><div class="week-text"></div><h3>Tracking Woche ${w.id}</h3><div class="table-wrap"><table data-week="${w.id}" data-soll-km="${w.sollKm}"><thead><tr><th>Spieler</th><th>Aktivität</th><th>Soll km</th><th>Ist km</th><th>Minuten</th><th>Pace</th><th>Sprints</th><th>Seilspringen</th><th>Kraft</th><th>Pass-Challenge</th><th>Jonglieren</th><th>Jonglieren Anzahl</th><th>Video</th></tr></thead><tbody></tbody></table></div>`;
-        const text = weekText(w);
-        block.querySelector('.week-text').textContent = text;
-        block.querySelector('.copy-btn').addEventListener('click', function() { const b=this; copyToClipboard(text, () => { const o=b.textContent; b.textContent='Text kopiert ✔'; setTimeout(() => b.textContent=o, 1500); }); });
-        weeksEl.appendChild(block);
-      });
-      renderRows(state);
-      renderButtons(state.players);
-    }
-
-    function taskCell(role, type='checkbox', extra='') {
-      return `<td><input type="${type}" ${extra} data-role="${role}" data-training-input><span class="not-applicable" hidden>—</span></td>`;
-    }
-
-    function renderRows(state) {
-      const players = sortPlayers(state.players);
-      document.querySelectorAll('table[data-week]').forEach(table => {
-        const weekId = table.dataset.week;
-        const sollKm = table.dataset.sollKm;
-        const tbody = table.querySelector('tbody');
-        tbody.innerHTML = '';
-        players.forEach(name => {
-          const data = (state.weeks[weekId] && state.weeks[weekId][name]) || blankData();
-          const row = document.createElement('tr');
-          row.innerHTML = `<td class="player-name"></td><td class="activity-cell"><select class="activity-select" data-role="activity"><option value="joggen">🏃 Joggen</option><option value="fahrrad">🚴 Fahrrad</option><option value="training">⚽ Training</option></select></td><td><span data-role="soll-value">${sollKm}</span><span class="not-applicable" data-role="soll-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="km"><span class="not-applicable" data-role="km-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="min"><span class="not-applicable" data-role="min-na" hidden>—</span></td><td><input type="text" class="pace" data-role="pace" readonly><span class="not-applicable" data-role="pace-na" hidden>—</span></td>${taskCell('sprints')}${taskCell('seil')}${taskCell('kraft')}${taskCell('pass')}${taskCell('jonglieren')}${taskCell('jonglierenAnzahl','text','inputmode="numeric"')}${taskCell('video')}</tr>`;
-          row.querySelector('.player-name').textContent = name;
-          row.querySelector('[data-role="activity"]').value = normalizeActivity(data.aktivitaet);
-          row.querySelector('[data-role="km"]').value = data.istKm || '';
-          row.querySelector('[data-role="min"]').value = data.minuten || '';
-          row.querySelector('[data-role="pace"]').value = data.pace || calculatePace(data.istKm, data.minuten);
-          row.querySelector('[data-role="sprints"]').checked = !!data.sprints;
-          row.querySelector('[data-role="seil"]').checked = !!data.seil;
-          row.querySelector('[data-role="kraft"]').checked = !!data.kraft;
-          row.querySelector('[data-role="pass"]').checked = !!data.pass;
-          row.querySelector('[data-role="jonglieren"]').checked = !!data.jonglieren;
-          row.querySelector('[data-role="jonglierenAnzahl"]').value = data.jonglierenAnzahl || '';
-          row.querySelector('[data-role="video"]').checked = !!data.video;
-          applyActivityMode(row, false);
-          attachListeners(row);
-          tbody.appendChild(row);
-        });
-      });
-    }
-
-    function attachListeners(row) {
-      row.querySelector('[data-role="activity"]').addEventListener('change', () => {
-        applyActivityMode(row, true);
-        saveState();
-      });
-
-      row.querySelectorAll('input').forEach(input => {
-        input.addEventListener(input.type === 'checkbox' ? 'change' : 'input', () => {
-          if (input.dataset.role === 'km' || input.dataset.role === 'min') sanitizeDecimal(input);
-          if (input.dataset.role === 'jonglierenAnzahl') input.value = input.value.replace(/[^0-9]/g, '');
-          if (row.querySelector('[data-role="activity"]').value === 'joggen' && (input.dataset.role === 'km' || input.dataset.role === 'min')) {
-            row.querySelector('[data-role="pace"]').value = calculatePace(row.querySelector('[data-role="km"]').value, row.querySelector('[data-role="min"]').value);
-          }
-          saveState();
-        });
-      });
-    }
-
-    function renderButtons(players) {
-      const c = document.getElementById('summary-buttons');
-      c.innerHTML = '';
-      sortPlayers(players).forEach(name => {
-        const b = document.createElement('button');
-        b.className = 'summary-btn';
-        b.dataset.player = name;
-        b.textContent = name;
-        b.addEventListener('click', () => copySummary(b, name));
-        c.appendChild(b);
-      });
-    }
-
-    function getPlayers() { return sortPlayers(Array.from(document.querySelectorAll('.summary-btn')).map(b => b.dataset.player)); }
-
-    function weekData(player, weekId) {
-      const table = document.querySelector(`table[data-week="${weekId}"]`);
-      const row = Array.from(table.querySelectorAll('tbody tr')).find(r => r.querySelector('.player-name').textContent.trim() === player);
-      return {
-        sollKm: table.dataset.sollKm,
-        aktivitaet: row.querySelector('[data-role="activity"]').value,
-        istKm: row.querySelector('[data-role="km"]').value || '-',
-        minuten: row.querySelector('[data-role="min"]').value || '-',
-        pace: row.querySelector('[data-role="pace"]').value || '-',
-        sprints: yn(row.querySelector('[data-role="sprints"]')),
-        seil: yn(row.querySelector('[data-role="seil"]')),
-        kraft: yn(row.querySelector('[data-role="kraft"]')),
-        pass: yn(row.querySelector('[data-role="pass"]')),
-        jonglieren: yn(row.querySelector('[data-role="jonglieren"]')),
-        jonglierenAnzahl: row.querySelector('[data-role="jonglierenAnzahl"]').value || '-',
-        video: yn(row.querySelector('[data-role="video"]'))
-      };
-    }
-
-    function buildSummary(player) {
-      let text = `D1 Sommerferien-Vorbereitung\n${player}\n\n`;
-      WEEKS.forEach(w => {
-        const d = weekData(player, w.id);
-        if (d.aktivitaet === 'training') {
-          text += `Woche ${w.id}:\n⚽ Training bei der SSVg begonnen\n\n`;
-          return;
-        }
-
-        text += `Woche ${w.id} (Soll ${d.sollKm} km Joggen):\n`;
-        if (d.aktivitaet === 'fahrrad') {
-          text += `🚴 Fahrrad: ${d.istKm} km\n`;
-        } else {
-          text += `🏃 Joggen: ${d.istKm} km in ${d.minuten} Min`;
-          if (d.pace !== '-') text += ` (Pace: ${d.pace} min/km)`;
-          text += `\n`;
-        }
-        text += `⚡ Sprinttraining: ${d.sprints}\n🪢 Seilspringen: ${d.seil}\n💪 Kraftübungen: ${d.kraft}\n⚽ Pass-Challenge: ${d.pass}\n🎯 Jonglieren: ${d.jonglieren} (Anzahl: ${d.jonglierenAnzahl})\n🎥 Video gesendet: ${d.video}\n\n`;
-      });
-      return text.trim();
-    }
-
-    function copySummary(btn, player) {
-      copyToClipboard(buildSummary(player), () => {
-        const original = btn.textContent;
-        btn.textContent = player + ' ✔';
-        setTimeout(() => btn.textContent = original, 1500);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const state = loadState();
-      render(state);
-      saveState();
-      const backupInput = document.getElementById('backup-file-input');
-      document.getElementById('backup-export-btn').addEventListener('click', exportBackup);
-      document.getElementById('backup-import-btn').addEventListener('click', () => { if (!ensureCode()) return; backupInput.click(); });
-      backupInput.addEventListener('change', () => { const file = backupInput.files && backupInput.files[0]; if (file) importBackupFile(file); });
-      document.getElementById('add-player-btn').addEventListener('click', () => {
-        if (!ensureCode()) return;
-        let name = prompt('Vorname des neuen Spielers:');
-        if (!name) return;
-        name = name.trim();
-        if (!name) return;
-        const players = getPlayers();
-        if (players.some(p => p.toLowerCase() === name.toLowerCase())) return alert('Diesen Spieler gibt es bereits.');
-        const state = loadState();
-        state.players = sortPlayers(players.concat(name));
-        WEEKS.forEach(w => { state.weeks[w.id] = state.weeks[w.id] || {}; state.weeks[w.id][name] = blankData(); });
-        render(state);
-        saveState();
-      });
-      document.getElementById('delete-player-btn').addEventListener('click', () => {
-        if (!ensureCode()) return;
-        const players = getPlayers();
-        const entered = prompt('Welchen Spieler löschen?\n\n' + players.join(', '));
-        if (!entered) return;
-        const found = players.find(p => p.toLowerCase() === entered.trim().toLowerCase());
-        if (!found) return alert('Spieler wurde nicht gefunden.');
-        if (!confirm(`Spieler "${found}" wirklich komplett löschen?`)) return;
-        const state = loadState();
-        state.players = players.filter(p => p !== found);
-        WEEKS.forEach(w => { if (state.weeks[w.id]) delete state.weeks[w.id][found]; });
-        render(state);
-        saveState();
-        alert(`Spieler "${found}" wurde gelöscht.`);
-      });
-      document.getElementById('reset-btn').addEventListener('click', () => {
-        if (!ensureCode()) return;
-        if (!confirm('Alle Trainingsdaten löschen? Spieler bleiben erhalten.')) return;
-        const state = { players: getPlayers(), weeks: {} };
-        WEEKS.forEach(w => { state.weeks[w.id] = {}; state.players.forEach(p => state.weeks[w.id][p] = blankData()); });
-        render(state);
-        saveState();
-        alert('Alle Trainingsdaten wurden gelöscht. Spieler bleiben erhalten.');
-      });
-    });
-  </script>
+${feedbackTemplate()}`}
+const sortPlayers=p=>Array.from(new Set(p.filter(Boolean))).sort((a,b)=>a.localeCompare(b,'de'));
+const blankData=()=>({aktivitaet:'joggen',istKm:'',minuten:'',pace:'',sprints:false,seil:false,kraft:false,pass:false,jonglieren:false,jonglierenAnzahl:'',video:false});
+const parseNumber=v=>parseFloat(String(v||'').replace(',','.'));
+const sanitizeDecimal=i=>i.value=i.value.replace(/[^0-9,.]/g,'');
+function calculatePace(kmVal,minVal){const km=parseNumber(kmVal),min=parseNumber(minVal);if(!(km>0&&min>0))return'';const p=min/km;let m=Math.floor(p),s=Math.round((p-m)*60);if(s===60){m++;s=0}return m+':'+String(s).padStart(2,'0')}
+const yn=cb=>cb&&cb.checked?'Ja':'Nein';
+function copyToClipboard(text,onSuccess){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(()=>onSuccess?.()).catch(fallback);else fallback();function fallback(){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();try{document.execCommand('copy');onSuccess?.()}catch(e){alert('Kopieren nicht möglich. Bitte manuell kopieren.')}t.remove()}}
+function ensureCode(){if(Date.now()<codeValidUntil)return true;const entered=prompt('Bitte Sicherheits-Code eingeben:');if(entered===null)return false;if(entered.trim()===SECURITY_CODE){codeValidUntil=Date.now()+180000;return true}alert('Falscher Code.');return false}
+const normalizeName=n=>n==='Piotr'?'Piotrek':n;
+const normalizeActivity=v=>ACTIVITIES.includes(v)?v:'joggen';
+function loadState(){let state=null;try{state=JSON.parse(localStorage.getItem(STORAGE_KEY))}catch(e){}if(!state){for(const key of OLD_KEYS){try{state=JSON.parse(localStorage.getItem(key))}catch(e){}if(state)break}}if(!state||!Array.isArray(state.players))state={players:[...DEFAULT_PLAYERS],weeks:{}};state.players=state.players.map(normalizeName);DEFAULT_PLAYERS.forEach(p=>{if(!state.players.includes(p))state.players.push(p)});state.players=sortPlayers(state.players);state.weeks=state.weeks||{};WEEKS.forEach(w=>{state.weeks[w.id]=state.weeks[w.id]||{};if(state.weeks[w.id].Piotr){state.weeks[w.id].Piotrek=state.weeks[w.id].Piotr;delete state.weeks[w.id].Piotr}state.players.forEach(p=>{const d=Object.assign(blankData(),state.weeks[w.id][p]||{});d.aktivitaet=normalizeActivity(d.aktivitaet);if(d.aktivitaet==='fahrrad'){d.minuten='';d.pace=''}state.weeks[w.id][p]=d})});return state}
+function saveState(){const state={players:getPlayers(),weeks:{}};document.querySelectorAll('table[data-week]').forEach(table=>{const id=table.dataset.week;state.weeks[id]={};table.querySelectorAll('tbody tr').forEach(row=>{const q=r=>row.querySelector(`[data-role="${r}"]`),name=row.querySelector('.player-name').textContent.trim();state.weeks[id][name]={aktivitaet:q('activity').value,istKm:q('km').value,minuten:q('min').value,pace:q('pace').value,sprints:q('sprints').checked,seil:q('seil').checked,kraft:q('kraft').checked,pass:q('pass').checked,jonglieren:q('jonglieren').checked,jonglierenAnzahl:q('jonglierenAnzahl').value,video:q('video').checked}})});localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function currentState(){saveState();try{return JSON.parse(localStorage.getItem(STORAGE_KEY))}catch(e){return loadState()}}
+async function exportBackup(){const backup={app:'D1 Sommerferien-Vorbereitung',version:3,exportedAt:new Date().toISOString(),state:currentState()},date=new Date().toISOString().slice(0,10),filename=`d1-sommerferien-backup-${date}.json`,json=JSON.stringify(backup,null,2),file=new File([json],filename,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({files:[file],title:'D1 Sommerferien-Backup'});return}catch(e){if(e?.name==='AbortError')return}}const url=URL.createObjectURL(file),link=document.createElement('a');link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function normalizePlayerData(data){const c=blankData();if(!data||typeof data!=='object')return c;c.aktivitaet=normalizeActivity(data.aktivitaet);c.istKm=data.istKm==null?'':String(data.istKm);c.minuten=c.aktivitaet==='fahrrad'||data.minuten==null?'':String(data.minuten);c.pace=c.aktivitaet==='fahrrad'||data.pace==null?'':String(data.pace);['sprints','seil','kraft','pass','jonglieren','video'].forEach(k=>c[k]=!!data[k]);c.jonglierenAnzahl=data.jonglierenAnzahl==null?'':String(data.jonglierenAnzahl);return c}
+function normalizeImportedState(raw){const state=raw?.state||raw;if(!state||!Array.isArray(state.players)||!state.weeks||typeof state.weeks!=='object')throw Error('Ungültige Backup-Struktur');const players=sortPlayers(state.players.filter(n=>typeof n==='string').map(n=>normalizeName(n.trim())).filter(Boolean));if(!players.length)throw Error('Keine Spieler im Backup');const clean={players,weeks:{}};WEEKS.forEach(w=>{const iw=state.weeks[w.id]||{};clean.weeks[w.id]={};players.forEach(p=>clean.weeks[w.id][p]=normalizePlayerData(iw[p]))});return clean}
+function importBackupFile(file){const input=document.getElementById('backup-file-input'),reader=new FileReader();reader.onload=()=>{try{const state=normalizeImportedState(JSON.parse(String(reader.result||'')));if(!confirm(`Backup mit ${state.players.length} Spielern laden?\n\nDie aktuell gespeicherten Daten werden überschrieben.`))return;localStorage.setItem(STORAGE_KEY,JSON.stringify(state));render(loadState());saveState();alert('JSON-Backup wurde erfolgreich geladen.')}catch(e){alert('Die Datei ist kein gültiges Backup. Es wurden keine Daten verändert.')}finally{input.value=''}};reader.onerror=()=>{input.value='';alert('Die Backup-Datei konnte nicht gelesen werden.')};reader.readAsText(file)}
+function setFieldMode(input,dash,visible){input.hidden=!visible;input.disabled=!visible;dash.hidden=visible}
+function applyActivityMode(row,clearFields){const q=r=>row.querySelector(`[data-role="${r}"]`),activity=q('activity').value,isJogging=activity==='joggen',isTraining=activity==='training',km=q('km'),min=q('min'),pace=q('pace');if(clearFields&&activity==='fahrrad'){min.value='';pace.value=''}setFieldMode(km,q('km-na'),!isTraining);setFieldMode(min,q('min-na'),isJogging);setFieldMode(pace,q('pace-na'),isJogging);q('soll-value').hidden=isTraining;q('soll-na').hidden=!isTraining;row.querySelectorAll('[data-training-input]').forEach(input=>setFieldMode(input,input.parentElement.querySelector('.not-applicable'),!isTraining));row.classList.toggle('training-row',isTraining);if(isJogging)pace.value=calculatePace(km.value,min.value)}
+function render(state){const weeksEl=document.getElementById('weeks');weeksEl.innerHTML='';WEEKS.forEach(w=>{const block=document.createElement('section');block.className='week-block';block.innerHTML=`<div class="week-header"><h2>D1 Vorbereitung – Woche ${w.id} (Soll: ${w.sollKm} km)</h2><button class="copy-btn">Wochen-Text kopieren</button></div><div class="week-text"></div><h3>Tracking Woche ${w.id}</h3><div class="table-wrap"><table data-week="${w.id}" data-soll-km="${w.sollKm}"><thead><tr><th>Spieler</th><th>Aktivität</th><th>Soll km</th><th>Ist km</th><th>Minuten</th><th>Pace</th><th>Sprints</th><th>Seilspringen</th><th>Kraft</th><th>Pass-Challenge</th><th>Jonglieren</th><th>Jonglieren Anzahl</th><th>Video</th></tr></thead><tbody></tbody></table></div>`;const text=weekText(w);block.querySelector('.week-text').textContent=text;block.querySelector('.copy-btn').onclick=function(){const b=this,o=b.textContent;copyToClipboard(text,()=>{b.textContent='Text kopiert ✔';setTimeout(()=>b.textContent=o,1500)})};weeksEl.appendChild(block)});renderRows(state);renderButtons(state.players)}
+const taskCell=(role,type='checkbox',extra='')=>`<td><input type="${type}" ${extra} data-role="${role}" data-training-input><span class="not-applicable" hidden>—</span></td>`;
+function renderRows(state){const players=sortPlayers(state.players);document.querySelectorAll('table[data-week]').forEach(table=>{const weekId=table.dataset.week,sollKm=table.dataset.sollKm,tbody=table.querySelector('tbody');tbody.innerHTML='';players.forEach(name=>{const d=state.weeks[weekId]?.[name]||blankData(),row=document.createElement('tr');row.innerHTML=`<td class="player-name"></td><td class="activity-cell"><select class="activity-select" data-role="activity"><option value="joggen">🏃 Joggen</option><option value="fahrrad">🚴 Fahrrad</option><option value="training">⚽ Training</option></select></td><td><span data-role="soll-value">${sollKm}</span><span class="not-applicable" data-role="soll-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="km"><span class="not-applicable" data-role="km-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="min"><span class="not-applicable" data-role="min-na" hidden>—</span></td><td><input type="text" class="pace" data-role="pace" readonly><span class="not-applicable" data-role="pace-na" hidden>—</span></td>${taskCell('sprints')}${taskCell('seil')}${taskCell('kraft')}${taskCell('pass')}${taskCell('jonglieren')}${taskCell('jonglierenAnzahl','text','inputmode="numeric"')}${taskCell('video')}`;const q=r=>row.querySelector(`[data-role="${r}"]`);row.querySelector('.player-name').textContent=name;q('activity').value=normalizeActivity(d.aktivitaet);q('km').value=d.istKm||'';q('min').value=d.minuten||'';q('pace').value=d.pace||calculatePace(d.istKm,d.minuten);['sprints','seil','kraft','pass','jonglieren','video'].forEach(k=>q(k).checked=!!d[k]);q('jonglierenAnzahl').value=d.jonglierenAnzahl||'';applyActivityMode(row,false);attachListeners(row);tbody.appendChild(row)})})}
+function attachListeners(row){const activity=row.querySelector('[data-role="activity"]');activity.onchange=()=>{applyActivityMode(row,true);saveState()};row.querySelectorAll('input').forEach(input=>input.addEventListener(input.type==='checkbox'?'change':'input',()=>{if(['km','min'].includes(input.dataset.role))sanitizeDecimal(input);if(input.dataset.role==='jonglierenAnzahl')input.value=input.value.replace(/[^0-9]/g,'');if(activity.value==='joggen'&&['km','min'].includes(input.dataset.role))row.querySelector('[data-role="pace"]').value=calculatePace(row.querySelector('[data-role="km"]').value,row.querySelector('[data-role="min"]').value);saveState()}))}
+function renderButtons(players){const c=document.getElementById('summary-buttons');c.innerHTML='';sortPlayers(players).forEach(name=>{const b=document.createElement('button');b.className='summary-btn';b.dataset.player=name;b.textContent=name;b.onclick=()=>copySummary(b,name);c.appendChild(b)})}
+const getPlayers=()=>sortPlayers([...document.querySelectorAll('.summary-btn')].map(b=>b.dataset.player));
+function weekData(player,weekId){const table=document.querySelector(`table[data-week="${weekId}"]`),row=[...table.querySelectorAll('tbody tr')].find(r=>r.querySelector('.player-name').textContent.trim()===player),q=r=>row.querySelector(`[data-role="${r}"]`);return{sollKm:table.dataset.sollKm,aktivitaet:q('activity').value,istKm:q('km').value||'-',minuten:q('min').value||'-',pace:q('pace').value||'-',sprints:yn(q('sprints')),seil:yn(q('seil')),kraft:yn(q('kraft')),pass:yn(q('pass')),jonglieren:yn(q('jonglieren')),jonglierenAnzahl:q('jonglierenAnzahl').value||'-',video:yn(q('video'))}}
+function buildSummary(player){let text=`D1 Sommerferien-Vorbereitung\n${player}\n\n`;WEEKS.forEach(w=>{const d=weekData(player,w.id);if(d.aktivitaet==='training'){text+=`Woche ${w.id}:\n⚽ Training bei der SSVg begonnen\n\n`;return}text+=`Woche ${w.id} (Soll ${d.sollKm} km Joggen):\n`;if(d.aktivitaet==='fahrrad')text+=`🚴 Fahrrad: ${d.istKm} km\n`;else{text+=`🏃 Joggen: ${d.istKm} km in ${d.minuten} Min`;if(d.pace!=='-')text+=` (Pace: ${d.pace} min/km)`;text+='\n'}text+=`⚡ Sprinttraining: ${d.sprints}\n🪢 Seilspringen: ${d.seil}\n💪 Kraftübungen: ${d.kraft}\n⚽ Pass-Challenge: ${d.pass}\n🎯 Jonglieren: ${d.jonglieren} (Anzahl: ${d.jonglierenAnzahl})\n🎥 Video gesendet: ${d.video}\n\n`});return text.trim()}
+function copySummary(btn,player){copyToClipboard(buildSummary(player),()=>{const o=btn.textContent;btn.textContent=player+' ✔';setTimeout(()=>btn.textContent=o,1500)})}
+document.addEventListener('DOMContentLoaded',()=>{render(loadState());saveState();const backupInput=document.getElementById('backup-file-input');document.getElementById('backup-export-btn').onclick=exportBackup;document.getElementById('backup-import-btn').onclick=()=>{if(ensureCode())backupInput.click()};backupInput.onchange=()=>{const file=backupInput.files?.[0];if(file)importBackupFile(file)};document.getElementById('add-player-btn').onclick=()=>{if(!ensureCode())return;let name=prompt('Vorname des neuen Spielers:')?.trim();if(!name)return;const players=getPlayers();if(players.some(p=>p.toLowerCase()===name.toLowerCase()))return alert('Diesen Spieler gibt es bereits.');const state=loadState();state.players=sortPlayers([...players,name]);WEEKS.forEach(w=>{state.weeks[w.id]=state.weeks[w.id]||{};state.weeks[w.id][name]=blankData()});render(state);saveState()};document.getElementById('delete-player-btn').onclick=()=>{if(!ensureCode())return;const players=getPlayers(),entered=prompt('Welchen Spieler löschen?\n\n'+players.join(', '));if(!entered)return;const found=players.find(p=>p.toLowerCase()===entered.trim().toLowerCase());if(!found)return alert('Spieler wurde nicht gefunden.');if(!confirm(`Spieler "${found}" wirklich komplett löschen?`))return;const state=loadState();state.players=players.filter(p=>p!==found);WEEKS.forEach(w=>{if(state.weeks[w.id])delete state.weeks[w.id][found]});render(state);saveState();alert(`Spieler "${found}" wurde gelöscht.`)};document.getElementById('reset-btn').onclick=()=>{if(!ensureCode()||!confirm('Alle Trainingsdaten löschen? Spieler bleiben erhalten.'))return;const state={players:getPlayers(),weeks:{}};WEEKS.forEach(w=>{state.weeks[w.id]={};state.players.forEach(p=>state.weeks[w.id][p]=blankData())});render(state);saveState();alert('Alle Trainingsdaten wurden gelöscht. Spieler bleiben erhalten.')}});
+</script>
 </body>
 </html>
