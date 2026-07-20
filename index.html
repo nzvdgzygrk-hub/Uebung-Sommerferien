@@ -20,11 +20,11 @@
     .week-header, .summary-buttons, .control-buttons { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
     .summary-buttons, .control-buttons { justify-content: flex-start; margin: 10px 0; }
     .week-text { white-space: pre-wrap; background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-top: 8px; font-size: 0.95rem; line-height: 1.35; }
-    button { padding: 8px 10px; border-radius: 6px; border: 1px solid #888; cursor: pointer; background: #e8e8e8; font-size: 0.85rem; }
-    .activity-btn { width: 105px; white-space: nowrap; font-weight: bold; }
-    .activity-btn[data-activity="fahrrad"] { background: #eef7ee; }
+    button, select { padding: 8px 10px; border-radius: 6px; border: 1px solid #888; background: #e8e8e8; font-size: 0.85rem; }
+    button { cursor: pointer; }
+    .activity-select { width: 120px; background: #fff; font-weight: bold; }
     .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    table { width: 100%; min-width: 1090px; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; background: #fff; }
+    table { width: 100%; min-width: 1110px; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; background: #fff; }
     th, td { border: 1px solid #ccc; padding: 5px 6px; text-align: center; vertical-align: middle; }
     th { background: #eee; }
     td.player-name { text-align: left; font-weight: bold; white-space: nowrap; position: sticky; left: 0; background: #fff; z-index: 1; }
@@ -32,6 +32,7 @@
     input.pace { width: 75px; background: #f0f0f0; }
     input[type="checkbox"] { width: 20px; height: 20px; }
     .not-applicable { color: #888; font-weight: bold; }
+    tr.training-row td:not(.player-name):not(.activity-cell) { background: #f4f4f4; }
     [hidden] { display: none !important; }
     @media (max-width: 600px) {
       body { padding: 10px; }
@@ -61,7 +62,7 @@
 Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder machen die Übungen in erster Linie für sich selbst. Wer die Aufgaben regelmäßig erledigt, startet fitter, schneller und technisch besser vorbereitet in die neue D1-Saison.</div>
   </section>
 
-  <p class="info">Wähle pro Spieler zuerst <strong>Joggen</strong> oder <strong>Fahrrad</strong>. Beim Joggen trägst du Kilometer und Minuten ein; die Pace wird automatisch berechnet. Beim Fahrrad werden ausschließlich die Kilometer eingetragen.</p>
+  <p class="info">Wähle pro Spieler <strong>🏃 Joggen</strong>, <strong>🚴 Fahrrad</strong> oder <strong>⚽ Training</strong>. Beim Joggen werden Kilometer, Minuten und Pace erfasst, beim Fahrrad nur die Kilometer. Sobald das Training bei der SSVg begonnen hat, wählst du „Training“ – dann ist keine weitere Eingabe erforderlich.</p>
   <p class="small-hint">Komma oder Punkt funktioniert, z. B. 3,5 oder 3.5.<br><span class="code-hint">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span></p>
 
   <main id="weeks"></main>
@@ -96,6 +97,7 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
     const STORAGE_KEY = 'sommerferien_d1_state_v3';
     const OLD_KEYS = ['sommerferien_u12_state_v2', 'sommerferien_u12_state_v1'];
     const SECURITY_CODE = '123456';
+    const ACTIVITIES = ['joggen', 'fahrrad', 'training'];
     let codeValidUntil = 0;
 
     function feedbackTemplate() {
@@ -173,7 +175,7 @@ ${feedbackTemplate()}`;
     }
 
     function normalizeName(name) { return name === 'Piotr' ? 'Piotrek' : name; }
-    function normalizeActivity(value) { return value === 'fahrrad' ? 'fahrrad' : 'joggen'; }
+    function normalizeActivity(value) { return ACTIVITIES.includes(value) ? value : 'joggen'; }
 
     function loadState() {
       let state = null;
@@ -210,7 +212,7 @@ ${feedbackTemplate()}`;
         table.querySelectorAll('tbody tr').forEach(row => {
           const name = row.querySelector('.player-name').textContent.trim();
           state.weeks[id][name] = {
-            aktivitaet: row.querySelector('[data-role="activity"]').dataset.activity,
+            aktivitaet: row.querySelector('[data-role="activity"]').value,
             istKm: row.querySelector('[data-role="km"]').value,
             minuten: row.querySelector('[data-role="min"]').value,
             pace: row.querySelector('[data-role="pace"]').value,
@@ -233,7 +235,7 @@ ${feedbackTemplate()}`;
     }
 
     async function exportBackup() {
-      const backup = { app: 'D1 Sommerferien-Vorbereitung', version: 2, exportedAt: new Date().toISOString(), state: currentState() };
+      const backup = { app: 'D1 Sommerferien-Vorbereitung', version: 3, exportedAt: new Date().toISOString(), state: currentState() };
       const date = new Date().toISOString().slice(0, 10);
       const filename = `d1-sommerferien-backup-${date}.json`;
       const json = JSON.stringify(backup, null, 2);
@@ -306,27 +308,38 @@ ${feedbackTemplate()}`;
       reader.readAsText(file);
     }
 
-    function activityButtonText(activity) { return activity === 'fahrrad' ? '🚴 Fahrrad' : '🏃 Joggen'; }
+    function setFieldMode(input, dash, visible) {
+      input.hidden = !visible;
+      input.disabled = !visible;
+      dash.hidden = visible;
+    }
 
-    function applyActivityMode(row, clearBikeFields) {
-      const button = row.querySelector('[data-role="activity"]');
-      const minutesInput = row.querySelector('[data-role="min"]');
+    function applyActivityMode(row, clearFields) {
+      const activity = row.querySelector('[data-role="activity"]').value;
+      const isJogging = activity === 'joggen';
+      const isTraining = activity === 'training';
+      const kmInput = row.querySelector('[data-role="km"]');
+      const minInput = row.querySelector('[data-role="min"]');
       const paceInput = row.querySelector('[data-role="pace"]');
-      const minutesDash = row.querySelector('[data-role="min-na"]');
-      const paceDash = row.querySelector('[data-role="pace-na"]');
-      const isBike = button.dataset.activity === 'fahrrad';
-      button.textContent = activityButtonText(button.dataset.activity);
-      minutesInput.hidden = isBike;
-      paceInput.hidden = isBike;
-      minutesInput.disabled = isBike;
-      paceInput.disabled = isBike;
-      minutesDash.hidden = !isBike;
-      paceDash.hidden = !isBike;
-      if (isBike && clearBikeFields) {
-        minutesInput.value = '';
+
+      if (clearFields && activity === 'fahrrad') {
+        minInput.value = '';
         paceInput.value = '';
       }
-      if (!isBike) paceInput.value = calculatePace(row.querySelector('[data-role="km"]').value, minutesInput.value);
+
+      setFieldMode(kmInput, row.querySelector('[data-role="km-na"]'), !isTraining);
+      setFieldMode(minInput, row.querySelector('[data-role="min-na"]'), isJogging);
+      setFieldMode(paceInput, row.querySelector('[data-role="pace-na"]'), isJogging);
+      row.querySelector('[data-role="soll-value"]').hidden = isTraining;
+      row.querySelector('[data-role="soll-na"]').hidden = !isTraining;
+
+      row.querySelectorAll('[data-training-input]').forEach(input => {
+        const dash = input.parentElement.querySelector('.not-applicable');
+        setFieldMode(input, dash, !isTraining);
+      });
+
+      row.classList.toggle('training-row', isTraining);
+      if (isJogging) paceInput.value = calculatePace(kmInput.value, minInput.value);
     }
 
     function render(state) {
@@ -345,6 +358,10 @@ ${feedbackTemplate()}`;
       renderButtons(state.players);
     }
 
+    function taskCell(role, type='checkbox', extra='') {
+      return `<td><input type="${type}" ${extra} data-role="${role}" data-training-input><span class="not-applicable" hidden>—</span></td>`;
+    }
+
     function renderRows(state) {
       const players = sortPlayers(state.players);
       document.querySelectorAll('table[data-week]').forEach(table => {
@@ -355,10 +372,9 @@ ${feedbackTemplate()}`;
         players.forEach(name => {
           const data = (state.weeks[weekId] && state.weeks[weekId][name]) || blankData();
           const row = document.createElement('tr');
-          row.innerHTML = `<td class="player-name"></td><td><button type="button" class="activity-btn" data-role="activity"></button></td><td>${sollKm}</td><td><input type="text" inputmode="decimal" data-role="km"></td><td><input type="text" inputmode="decimal" data-role="min"><span class="not-applicable" data-role="min-na" hidden>—</span></td><td><input type="text" class="pace" data-role="pace" readonly><span class="not-applicable" data-role="pace-na" hidden>—</span></td><td><input type="checkbox" data-role="sprints"></td><td><input type="checkbox" data-role="seil"></td><td><input type="checkbox" data-role="kraft"></td><td><input type="checkbox" data-role="pass"></td><td><input type="checkbox" data-role="jonglieren"></td><td><input type="text" inputmode="numeric" data-role="jonglierenAnzahl"></td><td><input type="checkbox" data-role="video"></td>`;
+          row.innerHTML = `<td class="player-name"></td><td class="activity-cell"><select class="activity-select" data-role="activity"><option value="joggen">🏃 Joggen</option><option value="fahrrad">🚴 Fahrrad</option><option value="training">⚽ Training</option></select></td><td><span data-role="soll-value">${sollKm}</span><span class="not-applicable" data-role="soll-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="km"><span class="not-applicable" data-role="km-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="min"><span class="not-applicable" data-role="min-na" hidden>—</span></td><td><input type="text" class="pace" data-role="pace" readonly><span class="not-applicable" data-role="pace-na" hidden>—</span></td>${taskCell('sprints')}${taskCell('seil')}${taskCell('kraft')}${taskCell('pass')}${taskCell('jonglieren')}${taskCell('jonglierenAnzahl','text','inputmode="numeric"')}${taskCell('video')}</tr>`;
           row.querySelector('.player-name').textContent = name;
-          const activityButton = row.querySelector('[data-role="activity"]');
-          activityButton.dataset.activity = normalizeActivity(data.aktivitaet);
+          row.querySelector('[data-role="activity"]').value = normalizeActivity(data.aktivitaet);
           row.querySelector('[data-role="km"]').value = data.istKm || '';
           row.querySelector('[data-role="min"]').value = data.minuten || '';
           row.querySelector('[data-role="pace"]').value = data.pace || calculatePace(data.istKm, data.minuten);
@@ -377,9 +393,7 @@ ${feedbackTemplate()}`;
     }
 
     function attachListeners(row) {
-      row.querySelector('[data-role="activity"]').addEventListener('click', event => {
-        const button = event.currentTarget;
-        button.dataset.activity = button.dataset.activity === 'joggen' ? 'fahrrad' : 'joggen';
+      row.querySelector('[data-role="activity"]').addEventListener('change', () => {
         applyActivityMode(row, true);
         saveState();
       });
@@ -388,7 +402,7 @@ ${feedbackTemplate()}`;
         input.addEventListener(input.type === 'checkbox' ? 'change' : 'input', () => {
           if (input.dataset.role === 'km' || input.dataset.role === 'min') sanitizeDecimal(input);
           if (input.dataset.role === 'jonglierenAnzahl') input.value = input.value.replace(/[^0-9]/g, '');
-          if (row.querySelector('[data-role="activity"]').dataset.activity === 'joggen' && (input.dataset.role === 'km' || input.dataset.role === 'min')) {
+          if (row.querySelector('[data-role="activity"]').value === 'joggen' && (input.dataset.role === 'km' || input.dataset.role === 'min')) {
             row.querySelector('[data-role="pace"]').value = calculatePace(row.querySelector('[data-role="km"]').value, row.querySelector('[data-role="min"]').value);
           }
           saveState();
@@ -416,7 +430,7 @@ ${feedbackTemplate()}`;
       const row = Array.from(table.querySelectorAll('tbody tr')).find(r => r.querySelector('.player-name').textContent.trim() === player);
       return {
         sollKm: table.dataset.sollKm,
-        aktivitaet: row.querySelector('[data-role="activity"]').dataset.activity,
+        aktivitaet: row.querySelector('[data-role="activity"]').value,
         istKm: row.querySelector('[data-role="km"]').value || '-',
         minuten: row.querySelector('[data-role="min"]').value || '-',
         pace: row.querySelector('[data-role="pace"]').value || '-',
@@ -434,6 +448,11 @@ ${feedbackTemplate()}`;
       let text = `D1 Sommerferien-Vorbereitung\n${player}\n\n`;
       WEEKS.forEach(w => {
         const d = weekData(player, w.id);
+        if (d.aktivitaet === 'training') {
+          text += `Woche ${w.id}:\n⚽ Training bei der SSVg begonnen\n\n`;
+          return;
+        }
+
         text += `Woche ${w.id} (Soll ${d.sollKm} km Joggen):\n`;
         if (d.aktivitaet === 'fahrrad') {
           text += `🚴 Fahrrad: ${d.istKm} km\n`;
