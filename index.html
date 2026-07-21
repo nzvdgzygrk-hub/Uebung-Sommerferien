@@ -107,7 +107,7 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
   </section>
 
   <p class="info">Wähle pro Spieler <strong>🏃 Joggen</strong>, <strong>🚴 Fahrrad</strong> oder <strong>⚽ Training</strong>. Beim Joggen werden Kilometer, Dauer und Pace erfasst, beim Fahrrad nur die Kilometer. Sobald das Training bei der SSVg begonnen hat, wählst du „Training“ – dann ist keine weitere Eingabe erforderlich.</p>
-  <p class="small-hint">Kilometer mit Komma oder Punkt eingeben, z. B. 3,5. Die Dauer am besten mit Doppelpunkt als Minuten:Sekunden eingeben, z. B. 18:57. Auch 18,57 oder 18.57 wird als 18:57 erkannt.<br><span class="code-hint">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span></p>
+  <p class="small-hint">Kilometer mit Komma oder Punkt eingeben, z. B. 3,5. Die Dauer am besten mit Doppelpunkt als Minuten:Sekunden eingeben, z. B. 18:57. Auch 18,57, 18.57 oder 00:18:57 wird richtig erkannt.<br><span class="code-hint">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span></p>
 
   <main id="weeks"></main>
 
@@ -284,14 +284,27 @@ ${feedbackTemplate()}`;
       const raw = String(value || '').trim();
       if (!raw) return NaN;
 
-      const separatorMatch = raw.match(/^(\d+)\s*[:,.]\s*(\d{1,2})$/);
+      const clockParts = raw.split(':');
+      if (clockParts.length === 2 && clockParts.every(part => /^\d+$/.test(part))) {
+        const minutes = Number(clockParts[0]);
+        const seconds = Number(clockParts[1]);
+        return seconds >= 0 && seconds < 60 ? (minutes * 60) + seconds : NaN;
+      }
+
+      if (clockParts.length === 3 && clockParts.every(part => /^\d+$/.test(part))) {
+        const hours = Number(clockParts[0]);
+        const minutes = Number(clockParts[1]);
+        const seconds = Number(clockParts[2]);
+        return minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60
+          ? (hours * 3600) + (minutes * 60) + seconds
+          : NaN;
+      }
+
+      const separatorMatch = raw.match(/^(\d+)\s*[,]\s*(\d{1,2})$/) || raw.match(/^(\d+)\s*[.]\s*(\d{1,2})$/);
       if (separatorMatch) {
         const minutes = Number(separatorMatch[1]);
         const seconds = Number(separatorMatch[2]);
-        if (Number.isFinite(minutes) && seconds >= 0 && seconds < 60) {
-          return (minutes * 60) + seconds;
-        }
-        return NaN;
+        return seconds >= 0 && seconds < 60 ? (minutes * 60) + seconds : NaN;
       }
 
       if (/^\d+$/.test(raw)) {
@@ -431,12 +444,7 @@ ${feedbackTemplate()}`;
           const query = role => row.querySelector(`[data-role="${role}"]`);
           const name = row.querySelector('.player-name').textContent.trim();
           const activity = query('activity').value;
-          const duration = activity === 'joggen' ? formatDuration(query('min').value) : '';
-
-          if (activity === 'joggen' && duration) {
-            query('min').value = duration;
-            query('pace').value = calculatePace(query('km').value, duration);
-          }
+          const duration = activity === 'joggen' ? query('min').value : '';
 
           state.weeks[weekId][name] = {
             aktivitaet: activity,
