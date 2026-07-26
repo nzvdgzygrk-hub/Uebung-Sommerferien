@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>D1 Sommerferien-Vorbereitung</title>
-<style>
-*{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;padding:14px;max-width:1200px;background:#fff;color:#222}h1,h2,h3{margin:0 0 .4rem}h1{font-size:1.5rem}h2{font-size:1.15rem}h3{font-size:1rem;margin-top:12px}.info,.small{font-size:.85rem;color:#555;line-height:1.35}.small{color:#777}.code{font-weight:bold;color:#b00}.card{border:1px solid #ccc;padding:12px;margin-bottom:18px;border-radius:8px;background:#f9f9f9}.intro{background:#f7fbff}.summary{border:2px solid #666;background:#f5f5f5}.head,.buttons,.feedback-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.buttons{justify-content:flex-start;margin:10px 0}.text{white-space:pre-wrap;background:#fff;border:1px solid #ddd;padding:10px;border-radius:6px;margin-top:8px;font-size:.95rem;line-height:1.35}.feedback{border:1px solid #9ab3c7;padding:10px;margin-top:14px;border-radius:7px;background:#f4f9fd}.feedback-head h3{margin:0}button,select{padding:8px 10px;border-radius:6px;border:1px solid #888;background:#e8e8e8;font-size:.85rem}button{cursor:pointer}.activity{width:120px;background:#fff;font-weight:bold}.wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;min-width:1190px;border-collapse:collapse;margin-top:10px;font-size:.85rem;background:#fff}th,td{border:1px solid #ccc;padding:5px 6px;text-align:center;vertical-align:middle}th{background:#eee}td.name{text-align:left;font-weight:bold;white-space:nowrap;position:sticky;left:0;background:#fff;z-index:1}input[type=text]{width:72px;padding:5px;border:1px solid #aaa;border-radius:4px}input.duration{width:82px}input.pace{width:75px;background:#f0f0f0}input[type=checkbox]{width:20px;height:20px}.na{color:#888;font-weight:bold}tr.training td:not(.name):not(.activity-cell):not(.feedback-cell){background:#f4f4f4}.feedback-cell{background:#fff8d9!important}[hidden]{display:none!important}@media(max-width:600px){body{padding:10px}h1{font-size:1.25rem}h2{font-size:1.05rem}.card{padding:10px}.copy,.feedback-copy,.control{width:100%}}
-</style>
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <h1>D1 Sommerferien-Vorbereitung</h1>
@@ -26,89 +24,9 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
 <p class="small">Kilometer mit Komma oder Punkt eingeben, z. B. 3,5. Dauer als Minuten:Sekunden, z. B. 18:57. Auch 18,57, 18.57 oder 00:18:57 wird erkannt.<br><span class="code">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span></p>
 <main id="weeks"></main>
 <div class="card summary"><h2>Ferien-Endübersicht</h2><p>Mit den Buttons kopierst du pro Spieler die Übersicht von <strong>Woche 1 bis Woche 6</strong> inklusive Erfolgsquote für WhatsApp.</p><div class="buttons" id="summary-buttons"></div><div class="buttons"><button class="control" id="add">Neuen Spieler anlegen</button><button class="control" id="delete">Einzelnen Spieler löschen</button><button class="control" id="export">JSON-Backup speichern</button><button class="control" id="import">JSON-Backup laden</button><button class="control" id="reset">Alle Daten zurücksetzen</button><input type="file" id="file" accept=".json,application/json" hidden></div><p class="small">Das JSON-Backup enthält die Spielerliste und alle Einträge aus Woche 1 bis Woche 6.</p></div>
-<script>
-const DEFAULT=['Ahmet','Aos','Benjamin','David','Efe','Elias','Jannik','Jonas','Julian','Kiril','Malik','Mario','Mika','Noah','Noel','Paul B','Paul H','Piotrek','Semih'];
-const WEEKS=[
-{id:1,km:'3',sprint:'3 × 20 m Sprint',seil:'3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed',kraft:'3 × 15 Ausfallschritte pro Bein',jong:25,pass:'➤ 40 Pässe mit dem rechten Fuß\n➤ 40 Pässe mit dem linken Fuß\n➤ nach jedem Pass 1–2 schnelle Schritte zurück und wieder in die Ballerwartungshaltung kommen'},
-{id:2,km:'3,5',sprint:'4 × 20 m Sprint',seil:'3 × 60 Sek.\n➤ 30 Sek. Technik + 30 Sek. Speed',kraft:'3 × 20 Sit-ups',jong:30,pass:'➤ 40 Pässe mit dem rechten Fuß\n➤ 40 Pässe mit dem linken Fuß\n➤ nach jedem Pass 1–2 schnelle Schritte zur Seite und wieder bereit zum Ball stehen'},
-{id:3,km:'4',sprint:'5 × 20 m Sprint',seil:'3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed',kraft:'3 × 12 Liegestütze',jong:35,pass:'➤ Ball mit rechts zur Seite mitnehmen und wieder passen\n➤ danach mit links zur anderen Seite mitnehmen und passen\n➤ 40 Pässe pro Seite – den Ball direkt in die neue Richtung mitnehmen'},
-{id:4,km:'4,5',sprint:'5 × 25 m Sprint',seil:'3 × 75 Sek.\n➤ 35 Sek. Technik + 40 Sek. Speed',kraft:'3 × 60 Sek. Plank',jong:40,pass:'➤ leicht seitlich zum Ball stehen\n➤ Ball mit dem hinteren Fuß annehmen, zur anderen Seite mitnehmen und passen\n➤ danach die Seite wechseln – 40 Pässe pro Seite'},
-{id:5,km:'4,8',sprint:'6 × 25 m Sprint',seil:'3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed',kraft:'3 × 10 Sprungkniebeugen\n➤ explosiv hochspringen, sauber und weich landen',jong:45,pass:'➤ Ball mit rechts annehmen und mit links passen\n➤ Ball mit links annehmen und mit rechts passen\n➤ jeweils 40 Pässe und nach jedem Pass wieder bereit stehen'},
-{id:6,km:'5',sprint:'8 × 25 m Sprint',seil:'3 × 90 Sek.\n➤ 45 Sek. Technik + 45 Sek. Speed',kraft:'3 × 45 Sek. Bergsteiger (Mountain Climbers)',jong:50,pass:'➤ 40 Pässe mit rechts\n➤ 40 Pässe mit links\n➤ 40 Pässe mit seitlicher Ballmitnahme\n➤ 40 Pässe abwechselnd mit rechts und links – nur saubere Pässe zählen'}];
-const KEY='sommerferien_d1_state_v3',OLD=['sommerferien_u12_state_v2','sommerferien_u12_state_v1'],CODE='123456',ACT=['joggen','fahrrad','training'];let validUntil=0;
-const feedback=()=>`📩 Rückmeldung an das Trainerteam
-
-Hinweis: Bitte meldet nur die aktuelle Woche zurück.
-
-🏃🚴 Bitte gebt pro Woche nur eine Einheit an. Auch wenn ihr mehrmals joggen oder Fahrrad fahren wart, tragt bitte nur einen Lauf oder eine Fahrradrunde ein.
-
-🏃 Joggen: _____ km in _____ Minuten
-oder
-🚴 Fahrradfahren: _____ km
-
-⚡ Sprinttraining ✅
-
-🪢 Seilspringen ✅
-
-💪 Krafttraining ✅
-
-⚽ Pass-Challenge ✅
-
-🎯 Jonglieren: _____ Kontakte
-
-🎥 Videos gesendet ✅
-
-Falls etwas nicht erledigt wurde, bitte das ✅ durch ein ❌ ersetzen.`;
-const weekText=w=>`✅ Woche ${w.id}
-
-🪢 Seilspringen:
-${w.seil}
-
-🏃 Joggen / 🚴 Fahrradfahren über die Running-App: ${w.km} km Joggen oder Fahrradfahren vom Umfang her vergleichbar
-➡️ Fahrradfahren bitte ohne E-Unterstützung.
-
-⚡ Sprinttraining:
-${w.sprint}
-➤ 30 Sek. Pause zwischen den Sprints
-
-💪 Kraftübung:
-${w.kraft}
-
-⚽ Pass-Challenge:
-${w.pass}
-➤ gegen eine Wand oder mit Eltern/Geschwistern
-➤ kein Video erforderlich
-
-🎯 Balljonglieren: Ziel: ${w.jong} Kontakte (beidbeinig) – mindestens 5 Versuche
-
-🎥 Videos: 1 × Seilspringen + Kraftübung (1 Satz) + Balljonglieren (bestes Ergebnis)
-
-💡 Die Übungen dürfen gerne auf mehrere Tage der Woche verteilt werden. Das Joggen/Fahrradfahren und das Sprinttraining sollten möglichst an unterschiedlichen Tagen durchgeführt werden. Bitte nicht alle Übungen an einem einzigen Tag erledigen.`;
-const blank=()=>({aktivitaet:'joggen',istKm:'',minuten:'',pace:'',sprints:false,seil:false,kraft:false,pass:false,jonglieren:false,jonglierenAnzahl:'',video:false,rueckmeldung:false});
-const sort=p=>[...new Set(p.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de'));const activity=v=>ACT.includes(v)?v:'joggen';const num=v=>parseFloat(String(v||'').replace(',','.'));
-function durationSeconds(v){const s=String(v||'').trim();if(!s)return NaN;let p=s.split(':');if(p.length===2&&p.every(x=>/^\d+$/.test(x))){let [m,sec]=p.map(Number);return sec<60?m*60+sec:NaN}if(p.length===3&&p.every(x=>/^\d+$/.test(x))){let [h,m,sec]=p.map(Number);return m<60&&sec<60?h*3600+m*60+sec:NaN}let x=s.match(/^(\d+)\s*[,\.]\s*(\d{1,2})$/);if(x){let sec=+x[2];return sec<60?(+x[1])*60+sec:NaN}return /^\d+$/.test(s)?(+s)*60:NaN}
-function formatDuration(v){let t=durationSeconds(v);return t>=0?`${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`:String(v||'')}
-function pace(km,d){let k=num(km),t=durationSeconds(d);if(!(k>0&&t>0))return'';let p=Math.round(t/k);return`${Math.floor(p/60)}:${String(p%60).padStart(2,'0')}`}
-function normalize(d){let x=Object.assign(blank(),d||{});x.aktivitaet=activity(x.aktivitaet);x.istKm=x.istKm==null?'':String(x.istKm);x.minuten=x.aktivitaet==='joggen'&&x.minuten!=null?formatDuration(String(x.minuten)):'';x.pace=x.aktivitaet==='joggen'?pace(x.istKm,x.minuten):'';['sprints','seil','kraft','pass','jonglieren','video','rueckmeldung'].forEach(k=>x[k]=!!x[k]);x.jonglierenAnzahl=x.jonglierenAnzahl==null?'':String(x.jonglierenAnzahl);return x}
-function load(){let s;try{s=JSON.parse(localStorage.getItem(KEY))}catch{}if(!s)for(const k of OLD){try{s=JSON.parse(localStorage.getItem(k))}catch{}if(s)break}if(!s||!Array.isArray(s.players))s={players:[...DEFAULT],weeks:{}};s.players=s.players.map(n=>n==='Piotr'?'Piotrek':n);DEFAULT.forEach(n=>{if(!s.players.includes(n))s.players.push(n)});s.players=sort(s.players);s.weeks=s.weeks||{};WEEKS.forEach(w=>{s.weeks[w.id]=s.weeks[w.id]||{};if(s.weeks[w.id].Piotr){s.weeks[w.id].Piotrek=s.weeks[w.id].Piotr;delete s.weeks[w.id].Piotr}s.players.forEach(n=>s.weeks[w.id][n]=normalize(s.weeks[w.id][n]))});return s}
-const q=(row,r)=>row.querySelector(`[data-role="${r}"]`);const yes=el=>el&&el.checked?'Ja':'Nein';
-function players(){return sort([...document.querySelectorAll('.summary-btn')].map(b=>b.dataset.player))}
-function save(){const s={players:players(),weeks:{}};document.querySelectorAll('table[data-week]').forEach(t=>{s.weeks[t.dataset.week]={};t.querySelectorAll('tbody tr').forEach(r=>{let a=q(r,'activity').value,d=a==='joggen'?q(r,'min').value:'';s.weeks[t.dataset.week][r.querySelector('.name').textContent.trim()]={aktivitaet:a,istKm:q(r,'km').value,minuten:d,pace:a==='joggen'?q(r,'pace').value:'',sprints:q(r,'sprints').checked,seil:q(r,'seil').checked,kraft:q(r,'kraft').checked,pass:q(r,'pass').checked,jonglieren:q(r,'jonglieren').checked,jonglierenAnzahl:q(r,'jonglierenAnzahl').value,video:q(r,'video').checked,rueckmeldung:q(r,'rueckmeldung').checked}})});localStorage.setItem(KEY,JSON.stringify(s))}
-function copy(text,button,done){const ok=()=>{let old=button.textContent;button.textContent=done;setTimeout(()=>button.textContent=old,1500)};if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(ok).catch(fallback);else fallback();function fallback(){let a=document.createElement('textarea');a.value=text;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch{alert('Kopieren nicht möglich. Bitte manuell kopieren.')}a.remove()}}
-function requireCode(){if(Date.now()<validUntil)return true;let x=prompt('Bitte Sicherheits-Code eingeben:');if(x===null)return false;if(x.trim()===CODE){validUntil=Date.now()+180000;return true}alert('Falscher Code.');return false}
-function field(input,dash,show){input.hidden=!show;input.disabled=!show;dash.hidden=show}
-function mode(r,clear=false){let a=q(r,'activity').value,j=a==='joggen',tr=a==='training',km=q(r,'km'),d=q(r,'min'),p=q(r,'pace');if(clear&&a==='fahrrad'){d.value='';p.value=''}field(km,q(r,'km-na'),!tr);field(d,q(r,'min-na'),j);field(p,q(r,'pace-na'),j);q(r,'soll').hidden=tr;q(r,'soll-na').hidden=!tr;r.querySelectorAll('[data-task]').forEach(i=>field(i,i.parentElement.querySelector('.na'),!tr));r.classList.toggle('training',tr);if(j)p.value=pace(km.value,d.value)}
-const task=(role,type='checkbox',extra='')=>`<td><input type="${type}" ${extra} data-role="${role}" data-task><span class="na" hidden>—</span></td>`;
-function rows(s){document.querySelectorAll('table[data-week]').forEach(t=>{let id=t.dataset.week,body=t.tBodies[0];body.innerHTML='';sort(s.players).forEach(n=>{let d=s.weeks[id]?.[n]||blank(),r=document.createElement('tr');r.innerHTML=`<td class="name"></td><td class="activity-cell"><select class="activity" data-role="activity"><option value="joggen">🏃 Joggen</option><option value="fahrrad">🚴 Fahrrad</option><option value="training">⚽ Training</option></select></td><td><span data-role="soll">${t.dataset.km}</span><span class="na" data-role="soll-na" hidden>—</span></td><td><input type="text" inputmode="decimal" data-role="km"><span class="na" data-role="km-na" hidden>—</span></td><td><input type="text" inputmode="text" class="duration" data-role="min" placeholder="18:57"><span class="na" data-role="min-na" hidden>—</span></td><td><input type="text" class="pace" data-role="pace" readonly><span class="na" data-role="pace-na" hidden>—</span></td>${task('sprints')}${task('seil')}${task('kraft')}${task('pass')}${task('jonglieren')}${task('jonglierenAnzahl','text','inputmode="numeric"')}${task('video')}<td class="feedback-cell"><input type="checkbox" data-role="rueckmeldung" aria-label="Rückmeldung erhalten"></td>`;r.querySelector('.name').textContent=n;q(r,'activity').value=activity(d.aktivitaet);q(r,'km').value=d.istKm||'';q(r,'min').value=d.minuten?formatDuration(d.minuten):'';q(r,'pace').value=pace(d.istKm,q(r,'min').value);['sprints','seil','kraft','pass','jonglieren','video','rueckmeldung'].forEach(k=>q(r,k).checked=!!d[k]);q(r,'jonglierenAnzahl').value=d.jonglierenAnzahl||'';mode(r);listeners(r);body.appendChild(r)})})}
-function listeners(r){let a=q(r,'activity'),d=q(r,'min');a.onchange=()=>{mode(r,true);save()};d.onblur=()=>{d.value=formatDuration(d.value);q(r,'pace').value=pace(q(r,'km').value,d.value);save()};r.querySelectorAll('input').forEach(i=>i.addEventListener(i.type==='checkbox'?'change':'input',()=>{if(i.dataset.role==='km')i.value=i.value.replace(/[^0-9,.]/g,'');if(i.dataset.role==='min')i.value=i.value.replace(/[^0-9:,.]/g,'');if(i.dataset.role==='jonglierenAnzahl')i.value=i.value.replace(/\D/g,'');if(a.value==='joggen'&&['km','min'].includes(i.dataset.role))q(r,'pace').value=pace(q(r,'km').value,d.value);save()}))}
-function render(s){let root=document.getElementById('weeks');root.innerHTML='';WEEKS.forEach(w=>{let c=document.createElement('section'),exercise=weekText(w),reply=feedback();c.className='card';c.innerHTML=`<div class="head"><h2>D1 Vorbereitung – Woche ${w.id} (Soll: ${w.km} km)</h2><button class="copy">Übungen kopieren</button></div><div class="text exercise"></div><div class="feedback"><div class="feedback-head"><h3>Rückmeldung separat kopieren</h3><button class="feedback-copy">Rückmeldung kopieren</button></div><div class="text reply"></div></div><h3>Tracking Woche ${w.id}</h3><div class="wrap"><table data-week="${w.id}" data-km="${w.km}"><thead><tr><th>Spieler</th><th>Aktivität</th><th>Soll km</th><th>Ist km</th><th>Dauer</th><th>Pace</th><th>Sprints</th><th>Seilspringen</th><th>Kraft</th><th>Pass-Challenge</th><th>Jonglieren</th><th>Jonglieren Anzahl</th><th>Video</th><th>Rückmeldung</th></tr></thead><tbody></tbody></table></div>`;c.querySelector('.exercise').textContent=exercise;c.querySelector('.reply').textContent=reply;c.querySelector('.copy').onclick=e=>copy(exercise,e.currentTarget,'Übungen kopiert ✔');c.querySelector('.feedback-copy').onclick=e=>copy(reply,e.currentTarget,'Rückmeldung kopiert ✔');root.appendChild(c)});rows(s);summaryButtons(s.players)}
-function summaryButtons(p){let box=document.getElementById('summary-buttons');box.innerHTML='';sort(p).forEach(n=>{let b=document.createElement('button');b.className='summary-btn';b.dataset.player=n;b.textContent=n;b.onclick=()=>copy(summary(n),b,`${n} ✔`);box.appendChild(b)})}
-function data(n,id){let t=document.querySelector(`table[data-week="${id}"]`),r=[...t.tBodies[0].rows].find(x=>x.querySelector('.name').textContent.trim()===n);return{soll:t.dataset.km,a:q(r,'activity').value,km:q(r,'km').value||'-',d:q(r,'min').value||'-',p:q(r,'pace').value||'-',sprints:yes(q(r,'sprints')),seil:yes(q(r,'seil')),kraft:yes(q(r,'kraft')),pass:yes(q(r,'pass')),jong:yes(q(r,'jonglieren')),anz:q(r,'jonglierenAnzahl').value||'-',video:yes(q(r,'video')),rueckmeldung:yes(q(r,'rueckmeldung'))}}
-function result(d){if(d.a==='training')return{done:6,total:6,percent:100};let done=(num(d.km)>0?1:0)+['sprints','seil','kraft','pass','jong'].filter(k=>d[k]==='Ja').length;return{done,total:6,percent:Math.round(done/6*100)}}
-function psText(p){if(p===100)return'Hervorragend – alle vorgesehenen Übungen wurden vollständig absolviert.';if(p>=80)return'Starke Leistung – fast alle vorgesehenen Übungen wurden absolviert.';if(p>=60)return'Ein großer Teil der vorgesehenen Übungen wurde absolviert.';if(p>=30)return'Ein Teil der vorgesehenen Übungen wurde absolviert. Es ist noch Luft nach oben.';return'Nur wenige der vorgesehenen Übungen wurden absolviert.'}
-function summary(n){let out=`D1 Sommerferien-Vorbereitung\n${n}\n\n`,done=0,total=0;WEEKS.forEach(w=>{let d=data(n,w.id),r=result(d);done+=r.done;total+=r.total;if(d.a==='training'){out+=`Woche ${w.id}:\n⚽ Training bei der SSVg begonnen\n✅ Übungen: ${r.done} von ${r.total} – ${r.percent} %\n📩 Rückmeldung erhalten: ${d.rueckmeldung}\n\n`;return}out+=`Woche ${w.id} (Soll ${d.soll} km Joggen oder vergleichbar Fahrrad):\n`;out+=d.a==='fahrrad'?`🚴 Fahrrad: ${d.km} km\n`:`🏃 Joggen: ${d.km} km in ${d.d} Min${d.p!=='-'?` (Pace: ${d.p} min/km)`:''}\n`;out+=`⚡ Sprinttraining: ${d.sprints}\n🪢 Seilspringen: ${d.seil}\n💪 Kraftübungen: ${d.kraft}\n⚽ Pass-Challenge: ${d.pass}\n🎯 Jonglieren: ${d.jong} (Anzahl: ${d.anz})\n🎥 Video gesendet: ${d.video}\n📩 Rückmeldung erhalten: ${d.rueckmeldung}\n✅ Übungen: ${r.done} von ${r.total} – ${r.percent} %\n\n`});let percent=total?Math.round(done/total*100):0;out+=`📊 Gesamtergebnis Sommerferien\n✅ ${done} von ${total} Übungen erledigt\n📈 Erfolgsquote: ${percent} %\n\nPS: ${psText(percent)}`;return out.trim()}
-async function exportBackup(){save();let b={app:'D1 Sommerferien-Vorbereitung',version:7,exportedAt:new Date().toISOString(),state:JSON.parse(localStorage.getItem(KEY))},name=`d1-sommerferien-backup-${new Date().toISOString().slice(0,10)}.json`,f=new File([JSON.stringify(b,null,2)],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'D1 Sommerferien-Backup'});return}catch(e){if(e?.name==='AbortError')return}}let u=URL.createObjectURL(f),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
-function importBackup(f){let input=document.getElementById('file'),r=new FileReader();r.onload=()=>{try{let raw=JSON.parse(String(r.result||'')),x=raw.state||raw;if(!x||!Array.isArray(x.players)||!x.weeks)throw 0;let s={players:sort(x.players.map(n=>n==='Piotr'?'Piotrek':String(n).trim()).filter(Boolean)),weeks:{}};WEEKS.forEach(w=>{s.weeks[w.id]={};s.players.forEach(n=>s.weeks[w.id][n]=normalize((x.weeks[w.id]||{})[n]))});if(!confirm(`Backup mit ${s.players.length} Spielern laden?\n\nDie aktuell gespeicherten Daten werden überschrieben.`))return;localStorage.setItem(KEY,JSON.stringify(s));render(load());save();alert('JSON-Backup wurde erfolgreich geladen.')}catch{alert('Die Datei ist kein gültiges Backup. Es wurden keine Daten verändert.')}finally{input.value=''}};r.readAsText(f)}
-document.addEventListener('DOMContentLoaded',()=>{render(load());save();let file=document.getElementById('file');document.getElementById('export').onclick=exportBackup;document.getElementById('import').onclick=()=>{if(requireCode())file.click()};file.onchange=()=>{if(file.files?.[0])importBackup(file.files[0])};document.getElementById('add').onclick=()=>{if(!requireCode())return;let n=prompt('Vorname des neuen Spielers:')?.trim();if(!n)return;let p=players();if(p.some(x=>x.toLowerCase()===n.toLowerCase()))return alert('Diesen Spieler gibt es bereits.');let s=load();s.players=sort([...p,n]);WEEKS.forEach(w=>{s.weeks[w.id]=s.weeks[w.id]||{};s.weeks[w.id][n]=blank()});render(s);save()};document.getElementById('delete').onclick=()=>{if(!requireCode())return;let p=players(),x=prompt('Welchen Spieler löschen?\n\n'+p.join(', '));if(!x)return;let n=p.find(v=>v.toLowerCase()===x.trim().toLowerCase());if(!n)return alert('Spieler wurde nicht gefunden.');if(!confirm(`Spieler "${n}" wirklich komplett löschen?`))return;let s=load();s.players=p.filter(v=>v!==n);WEEKS.forEach(w=>delete s.weeks[w.id]?.[n]);render(s);save();alert(`Spieler "${n}" wurde gelöscht.`)};document.getElementById('reset').onclick=()=>{if(!requireCode()||!confirm('Alle Trainingsdaten löschen? Spieler bleiben erhalten.'))return;let s={players:players(),weeks:{}};WEEKS.forEach(w=>{s.weeks[w.id]={};s.players.forEach(n=>s.weeks[w.id][n]=blank())});render(s);save();alert('Alle Trainingsdaten wurden gelöscht. Spieler bleiben erhalten.')}});
-</script>
+<script src="data.js?v=8"></script>
+<script src="core.js?v=8"></script>
+<script src="view.js?v=8"></script>
+<script src="stats.js?v=8"></script>
+<script src="storage.js?v=8"></script>
 </body></html>
