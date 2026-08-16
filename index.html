@@ -24,9 +24,25 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
 <p class="small">Kilometer mit Komma oder Punkt eingeben, z. B. 3,5. Dauer als Minuten:Sekunden, z. B. 18:57. Auch 18,57, 18.57 oder 00:18:57 wird erkannt.<br><span class="code">Sicherheits-Code für neue Spieler, Spieler löschen &amp; Zurücksetzen: 123456</span></p>
 <main id="weeks"></main>
 <div class="card summary"><h2>Ferien-Endübersicht</h2><p>Mit den Buttons kopierst du pro Spieler die Übersicht von <strong>Woche 1 bis Woche 6</strong> inklusive Punkten direkt hinter den Übungen und Erfolgsquote für WhatsApp.</p><div class="buttons" id="summary-buttons"></div><div class="buttons"><button class="control" id="add">Neuen Spieler anlegen</button><button class="control" id="delete">Einzelnen Spieler löschen</button><button class="control" id="export">JSON-Backup speichern</button><button class="control" id="import">JSON-Backup laden</button><button class="control" id="reset">Alle Daten zurücksetzen</button><input type="file" id="file" accept=".json,application/json" hidden></div><p class="small">Das JSON-Backup enthält die Spielerliste und alle Einträge aus Woche 1 bis Woche 6.</p></div>
+
+<section class="card" id="training-camp-info">
+<h2>⚽ Training / Fußballcamp statt Sommerübung</h2>
+<div class="text">Wer in der jeweiligen Woche bei uns am Mannschaftstraining teilgenommen oder an einem Fußballcamp teilgenommen hat, muss die Sommerferien-Übungen für diese Woche nicht zusätzlich machen.
+
+Eine kurze Rückmeldung ist trotzdem erforderlich und muss spätestens am Sonntag um 20:00 Uhr kommen.</div>
+<div class="feedback">
+<div class="feedback-head"><h3>Rückmeldung separat kopieren</h3><button class="camp-copy">Rückmeldung kopieren</button></div>
+<div class="text camp-reply">⚽ Training / Fußballcamp teilgenommen ✅</div>
+</div>
+</section>
+
 <script src="data.js?v=12"></script>
 <script src="core.js?v=12"></script>
 <script src="view.js?v=12"></script>
 <script src="stats.js?v=12"></script>
 <script src="storage.js?v=12"></script>
+<script>
+const campReply='⚽ Training / Fußballcamp teilgenommen ✅';
+document.querySelector('.camp-copy').onclick=e=>copy(campReply,e.currentTarget,'Rückmeldung kopiert ✔');
+</script>
 </body></html>
