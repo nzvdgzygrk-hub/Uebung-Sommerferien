@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>D1 Sommerferien-Vorbereitung</title>
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 <h1>D1 Sommerferien-Vorbereitung</h1>
@@ -25,6 +25,21 @@ Die Sommerferien-Aufgaben sind keine Kontrolle durch das Trainerteam. Die Kinder
 <main id="weeks"></main>
 <div class="card summary"><h2>Ferien-Endübersicht</h2><p>Mit den Buttons kopierst du pro Spieler die Übersicht von <strong>Woche 1 bis Woche 6</strong> inklusive Punkten direkt hinter den Übungen und Erfolgsquote für WhatsApp.</p><div class="buttons" id="summary-buttons"></div><div class="buttons"><button class="control" id="add">Neuen Spieler anlegen</button><button class="control" id="delete">Einzelnen Spieler löschen</button><button class="control" id="export">JSON-Backup speichern</button><button class="control" id="import">JSON-Backup laden</button><button class="control" id="reset">Alle Daten zurücksetzen</button><input type="file" id="file" accept=".json,application/json" hidden></div><p class="small">Das JSON-Backup enthält die Spielerliste und alle Einträge aus Woche 1 bis Woche 6.</p></div>
 
+<section class="card pace-card" id="pace-ranking-card">
+<h2>🏆 Pace-Rangliste pro Woche</h2>
+<p class="small">Es werden nur Spieler mit Aktivität <strong>Joggen</strong> und gültiger Pace berücksichtigt. Fahrrad und Training werden nicht verglichen.</p>
+<div class="pace-controls"><label for="pace-week">Woche:</label><select id="pace-week"></select></div>
+<div id="pace-ranking"></div>
+</section>
+
+<section class="card pace-card" id="pace-player-card">
+<h2>📈 Pace-Verlauf pro Spieler</h2>
+<p class="small">Zeigt die persönliche Pace und die Platzierung des Spielers in jeder Woche.</p>
+<div class="pace-controls"><label for="pace-player">Spieler:</label><select id="pace-player"></select></div>
+<div id="pace-player-summary"></div>
+<div id="pace-player-history"></div>
+</section>
+
 <section class="card" id="training-camp-info">
 <h2>⚽ Training / Fußballcamp statt Sommerübung</h2>
 <div class="feedback-head"><h3>Hinweis</h3><button class="camp-info-copy">Hinweis kopieren</button></div>
@@ -41,11 +56,11 @@ Hinweis: Bitte meldet nur die aktuelle Woche zurück.
 </div>
 </section>
 
-<script src="data.js?v=12"></script>
-<script src="core.js?v=12"></script>
-<script src="view.js?v=12"></script>
-<script src="stats.js?v=12"></script>
-<script src="storage.js?v=12"></script>
+<script src="data.js?v=13"></script>
+<script src="core.js?v=13"></script>
+<script src="view.js?v=13"></script>
+<script src="stats.js?v=13"></script>
+<script src="storage.js?v=13"></script>
 <script>
 const campInfo=`Wer in der Woche bei uns am Mannschaftstraining teilnimmt oder an einem Fußballcamp mitmacht, muss die Sommerferien-Übungen für diese Woche nicht zusätzlich machen.\n\nEine kurze Rückmeldung ist trotzdem erforderlich und muss spätestens am Sonntag um 20:00 Uhr kommen.`;
 const campReply=`📩 Rückmeldung an das Trainerteam\n\nHinweis: Bitte meldet nur die aktuelle Woche zurück.\n\n⚽ Training / Fußballcamp teilgenommen ✅`;
